@@ -1,0 +1,84 @@
+---
+// Starlight footer override: keeps the default docs footer (prev/next links
+// etc.) and appends the webapp's shared site footer bar (see the app's
+// Footer.jsx / .site-footer styles), pointing back at the product site.
+import Default from '@astrojs/starlight/components/Footer.astro';
+
+const year = new Date().getFullYear();
+---
+
+<Default><slot /></Default>
+
+<footer class="me-site-footer">
+	<div class="me-site-footer-inner">
+		<span class="me-site-footer-brand">
+			Maths Explore<span class="me-site-footer-copyright">© {year} Explorare Ltd.</span>
+		</span>
+		<nav class="me-site-footer-links" aria-label="Maths Explore">
+			<a href="https://www.mathsexplore.com">Open Maths Explore</a>
+			<a href="https://www.mathsexplore.com/plans">Plans</a>
+		</nav>
+	</div>
+</footer>
+
+<style>
+	.me-site-footer {
+		margin-top: 2.5rem;
+		border-top: 1px solid var(--sl-color-hairline);
+		font-family: var(--me-ui-font);
+	}
+
+	.me-site-footer-inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		flex-wrap: wrap;
+		padding-top: 18px;
+	}
+
+	.me-site-footer-brand {
+		font-size: 0.85rem;
+		font-weight: 500;
+		color: var(--sl-color-white);
+	}
+
+	.me-site-footer-copyright {
+		font-weight: 500;
+		color: var(--me-slate-400);
+		margin-left: 10px;
+	}
+
+	.me-site-footer-links {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+	}
+
+	.me-site-footer-links a {
+		font-size: 0.85rem;
+		color: var(--sl-color-gray-3);
+		text-decoration: none;
+	}
+
+	.me-site-footer-links a:hover {
+		color: var(--me-accent-green);
+	}
+
+	/* Exact app values in light mode; dark mode brightens the hover green for contrast */
+	:global([data-theme='light']) .me-site-footer {
+		border-top-color: var(--me-slate-200);
+	}
+
+	:global([data-theme='light']) .me-site-footer-brand {
+		color: var(--me-slate-900);
+	}
+
+	:global([data-theme='light']) .me-site-footer-links a {
+		color: var(--me-slate-600);
+	}
+
+	:global([data-theme='dark']) .me-site-footer-links a:hover {
+		color: color-mix(in srgb, var(--me-accent-green) 55%, white);
+	}
+</style>

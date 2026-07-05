@@ -1,0 +1,88 @@
+/* Maths Explore chrome, mirrored from the webapp (client/src/styles/app.css).
+   Header is the app's dark "chrome" bar in both colour schemes; the footer bar
+   lives in src/components/Footer.astro and shares these tokens. */
+
+:root {
+	/* App chrome tokens */
+	--me-chrome-bg: rgb(33 37 41);
+	--me-chrome-border: rgb(73 80 87);
+	--me-chrome-text: #f8f9fa;
+	--me-chrome-muted: #adb5bd;
+	--me-accent: #3b82f6;
+	--me-accent-green: #0e7a5f;
+	--me-slate-200: #e2e8f0;
+	--me-slate-400: #94a3b8;
+	--me-slate-600: #475569;
+	--me-slate-900: #0f172a;
+	--me-ui-font: 'Sora', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+	/* App header is 64px tall with a 30px logo */
+	--sl-nav-height: 4rem;
+	--sl-nav-logo-height: 1.875rem;
+}
+
+/* ——— Header: the app's fixed dark chrome bar (frosted glass) ——— */
+
+header.header {
+	--sl-color-bg-nav: color-mix(in srgb, var(--me-chrome-bg) 88%, transparent);
+	border-bottom: 1px solid var(--me-chrome-border);
+	box-shadow: 0 6px 18px rgb(15 23 42 / 0.08);
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+	font-family: var(--me-ui-font);
+}
+
+.site-title {
+	gap: 10px;
+	color: var(--me-chrome-text);
+	font-family: var(--me-ui-font);
+	font-weight: 800;
+	font-size: 0.98rem;
+	white-space: nowrap;
+}
+
+/* Small "Docs" chip so the shared brand still reads as the docs site */
+.site-title::after {
+	content: 'Docs';
+	align-self: center;
+	padding: 0.1rem 0.55rem;
+	border: 1px solid var(--me-chrome-border);
+	border-radius: 999px;
+	color: var(--me-chrome-muted);
+	font-size: 0.68rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+}
+
+/* The app header is always dark — keep the docs header dark in light mode too,
+   re-skinning the header controls that would otherwise render for a light bar. */
+[data-theme='light'] .site-title {
+	color: var(--me-chrome-text);
+}
+
+[data-theme='light'] header.header button[data-open-modal] {
+	background-color: rgb(65 72 80 / 0.55);
+	border-color: var(--me-chrome-border);
+	color: var(--me-chrome-muted);
+}
+
+[data-theme='light'] header.header button[data-open-modal] kbd {
+	background-color: var(--me-chrome-bg);
+	color: var(--me-chrome-muted);
+}
+
+[data-theme='light'] header.header starlight-theme-select label {
+	color: var(--me-chrome-muted);
+}
+
+[data-theme='light'] header.header starlight-theme-select label:hover {
+	color: var(--me-chrome-text);
+}
+
+header.header .social-icons a {
+	color: var(--me-chrome-muted);
+}
+
+header.header .social-icons a:hover {
+	color: var(--me-chrome-text);
+}
