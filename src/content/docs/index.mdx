@@ -1,40 +1,40 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Maths Explore
+description: User guide for Maths Explore — the calculation pad for engineers with live maths, units, and an AI assistant.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
+  tagline: A calculation pad for engineers. Write maths on paper-like sheets — every expression evaluates live, with units checked as you type.
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Get started
+      link: guides/getting-started/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
-      variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## What is Maths Explore?
+
+Maths Explore is a web app for engineering calculations. You place blocks of maths, text, and diagrams anywhere on paginated sheets (A4 or US Letter). Maths is evaluated in reading order against one shared scope, so results update everywhere the moment you change an input — like a spreadsheet, but written as real mathematical notation.
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="Live maths" icon="pencil">
+		Define variables with `:=`, reuse them anywhere on the sheet, and see
+		results rendered inline as you type.
 	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
+	<Card title="Units built in" icon="approve-check">
+		Attach units like `2.mm` or `N.m` to any value. Results carry their
+		units, and you can convert them per block.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Mathew, the AI nerd" icon="rocket">
+		Describe a calculation in plain language and Mathew writes the blocks
+		for you — straight onto your sheet, with one-click undo.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	<Card title="Your files, your machine" icon="document">
+		Calcsheets autosave to your browser and save to portable `.mez` files
+		on disk. Print or export to PDF when you're done.
 	</Card>
 </CardGrid>
+
+## First steps
+
+New accounts start with a **14-day free trial** of the Individual plan — no card required. Head to [Getting started](guides/getting-started/) to create an account and build your first calcsheet, then explore the guides in the sidebar for blocks, maths syntax, units, templates, and more.
