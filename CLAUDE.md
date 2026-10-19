@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-Documentation site built with [Astro Starlight](https://starlight.astro.build/). It documents "Math Explore", an engineering calculation webapp developed locally at `F:\dev\math-explore`, for that app's users.
+Documentation site built with [Astro Starlight](https://starlight.astro.build/). It documents "Math Explore", an engineering calculation webapp developed locally at `D:\math-explore`, for that app's users.
 
 ## Commands
 
@@ -26,7 +26,24 @@ There are no tests or linters configured.
 
 ## Writing docs content
 
-The Math Explore app source at `F:\dev\math-explore` is the **source of truth** for all docs content (read access is granted via `permissions.additionalDirectories` in `.claude/settings.json`). Derive feature behavior, syntax rules, and tier availability from that code — never write docs from memory. Start with `F:\dev\math-explore\CLAUDE.md` for orientation. Use the `/sync-docs` skill to populate or refresh pages; it encodes the feature → source-file → docs-page mapping and the update process.
+The Math Explore app source at `D:\math-explore` is the **source of truth** for all docs content (read access is granted via `permissions.additionalDirectories` in `.claude/settings.json`). Derive feature behavior, syntax rules, and tier availability from that code — never write docs from memory. Start with `D:\math-explore\CLAUDE.md` for orientation. Use the `/sync-docs` skill to populate or refresh pages; it encodes the feature → source-file → docs-page mapping and the update process.
+
+### Function reference pages
+
+Reference pages that document the app's **built-in functions** (`reference/symbolic-functions.md`, `reference/table-functions.md`, and any future function family) follow a docstring pattern. The entries are intended to be surfaced **inside the app** as concise per-function help, so each must stand alone and be separable from the page around it. This applies only to function pages: other reference pages — units, constants, keyboard shortcuts, calcsheet options and similar lookup tables — are ordinary reference content and are not bound by this shape.
+
+- **A function page contains function entries and nothing else.** One entry per function. Concepts, grid rules, toolbar, keyboard, display behaviour, UI labels and general error messages go in the matching guide.
+- **One `##` heading per function, named exactly as the function** (`## lookup`). Nothing else on the page may be an `##` — no "See also", no intro heading — because "On this page" must list only the functions.
+- **Frontmatter** sets `tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 }` so the `###` sections below stay out of the ToC.
+- **Every entry has the same docstring shape**, in this order:
+  1. A code block of the signature(s) — every arity and spelling.
+  2. One short paragraph: what it does.
+  3. `### Parameters` — a table of name, meaning, accepted forms.
+  4. `### Returns`
+  5. `### Errors` — the messages *this function* raises and when. Messages raised by the sheet or the block (naming, cell contents) belong in the guide.
+  6. `### Example` — inputs and results, maths typeset.
+- The page opens with a single line pointing at its guide, then the first function. Nothing after the last entry.
+- **The matching guide holds everything else about the feature**: the mental model, how-to, UI and toolbar, keyboard, display and rounding, limits in context, worked walkthroughs, and a "See also" link to the function page.
 
 ## Deployment
 

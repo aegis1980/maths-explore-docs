@@ -7,9 +7,17 @@ Maths Explore is a calculation pad for engineers: you write maths on paginated s
 
 ## Create an account
 
-On the Maths Explore site, choose **Create Account** (top right) or the **Try Maths Explore** button. Sign-up opens in a dialog on the page — no separate registration site. If you already have an account, use **Login** instead.
+On the Maths Explore site, choose **Sign up** (top right). Sign-up opens in a dialog on the page — no separate registration site. If you already have an account, use **Sign in** instead.
 
-Once you're signed in, you land on your home page, and the site header shows **Open Workspace** instead of the sign-in buttons. Signing out returns you to the front page.
+Once you're signed in, you land on your home page, and the site header shows **Open workspace** instead of the sign-in buttons. Signing out returns you to the front page.
+
+## Try it without an account
+
+You don't have to sign up to have a look round. The **Try Maths Explore** button on the front page opens a worked sample straight in the workspace, with no account needed — you can edit it, change the inputs, and watch the results update.
+
+Your changes are kept in this browser from your first edit onwards, so a reload won't lose them. When you do sign up, the sheet you were working on comes with you into your account, so nothing you tried is thrown away.
+
+The front page's **See plans** button goes to the plans and pricing page, and you can browse the full set of worked examples at any time from the **Samples** page.
 
 ## The beta waitlist
 
@@ -25,7 +33,7 @@ Your country sets the local currency used for every price you'll see in the app 
 
 ## Your free trial
 
-Every new account automatically starts a **14-day free trial of the Individual plan** on first sign-in — no card details, nothing to activate. While the trial runs, the app header shows how many days you have left; click that notice any time to see the plans.
+Every new account automatically starts a **14-day free trial of the Professional plan** on first sign-in — no card details, nothing to activate. While the trial runs, the app header shows how many days you have left; click that notice any time to see the plans.
 
 When the trial ends, your account simply moves to the Free plan. Your calcsheets are untouched — only the paid features switch off until you subscribe.
 
