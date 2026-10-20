@@ -35,6 +35,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          # Full history: Starlight's `lastUpdated` reads each page's git log.
+          fetch-depth: 0
       - name: Detect package manager
         id: detect-package-manager
         run: |
@@ -67,6 +70,10 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build with Astro
+        env:
+          # Optional: a Search Console HTML-tag token (repository variable) that
+          # astro.config.mjs emits as <meta name="google-site-verification">.
+          GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
             --site "${{ steps.pages.outputs.origin }}" \

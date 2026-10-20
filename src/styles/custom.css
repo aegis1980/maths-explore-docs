@@ -1,24 +1,256 @@
-/* Maths Explore chrome, mirrored from the webapp (client/src/styles/app.css).
-   Header is the app's dark "chrome" bar in both colour schemes; the footer bar
-   lives in src/components/Footer.astro and shares these tokens. */
+/* Maths Explore styling, mirrored from the webapp (client/src/styles/app.css).
+   Two palettes meet here, as they do in the app: the dark Bootstrap-grey
+   "chrome" (header, sidebar panel, modals) framing a light Tailwind-slate
+   content surface. Light mode reproduces the app; the app has no dark mode, so
+   dark mode is built from the same chrome tokens its modals and sidebar use.
+   The footer bar lives in src/components/Footer.astro and shares these tokens. */
 
 :root {
-	/* App chrome tokens */
+	/* ——— App tokens (names as in app.css, prefixed) ——— */
 	--me-chrome-bg: rgb(33 37 41);
+	--me-chrome-bg-lighter: rgb(65 72 80);
 	--me-chrome-border: rgb(73 80 87);
+	--me-chrome-hover: rgb(52 58 64);
+	--me-chrome-input: rgb(24 28 32);
 	--me-chrome-text: #f8f9fa;
 	--me-chrome-muted: #adb5bd;
-	--me-accent: #3b82f6;
+	--me-chrome-faint: #868e96;
+
+	--me-accent: #3b82f6; /* in-app interactive accent */
+	--me-accent-strong: #2563eb;
+	--me-accent-deep: #1d4ed8; /* marketing / public-page CTA blue */
+	--me-accent-deep-hover: #1e40af;
+	--me-accent-light: #60a5fa; /* accent on dark chrome (--modal-accent) */
 	--me-accent-green: #0e7a5f;
+	--me-danger: #ef4444;
+	--me-danger-light: #f87171; /* danger on dark chrome (--modal-danger) */
+
+	--me-slate-50: #f8fafc;
+	--me-slate-100: #f1f5f9;
 	--me-slate-200: #e2e8f0;
+	--me-slate-300: #cbd5e1;
 	--me-slate-400: #94a3b8;
+	--me-slate-500: #64748b;
 	--me-slate-600: #475569;
+	--me-slate-700: #334155;
+	--me-slate-800: #1e293b;
 	--me-slate-900: #0f172a;
-	--me-ui-font: 'Sora', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+	--me-radius-sm: 6px; /* controls */
+	--me-radius-md: 10px; /* cards, menus */
+	--me-radius-lg: 14px; /* modals */
+	--me-shadow-popover:
+		0 0 0 1px rgb(15 23 42 / 0.04),
+		0 4px 10px -2px rgb(15 23 42 / 0.1),
+		0 16px 32px -8px rgb(15 23 42 / 0.18);
+	--me-shadow-raised:
+		0 2px 6px -2px rgb(15 23 42 / 0.16),
+		0 12px 28px -10px rgb(15 23 42 / 0.28);
+	--me-transition-snappy: 0.15s ease;
+
+	/* Inter for body/UI (designed for small sizes), Sora for headings and the
+	   wordmark. Both self-hosted via @fontsource-variable, as in the app. */
+	--me-ui-font: 'Inter Variable', Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	--me-heading-font: 'Sora Variable', Sora, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	--me-mono-font: Consolas, 'Liberation Mono', monospace;
+
+	/* ——— Starlight: typography and layout ——— */
+	--sl-font: var(--me-ui-font);
+	--sl-font-mono: var(--me-mono-font);
+	--sl-line-height: 1.6;
+	--sl-line-height-headings: 1.2;
 
 	/* App header is 64px tall with a 30px logo */
 	--sl-nav-height: 4rem;
 	--sl-nav-logo-height: 1.875rem;
+
+	/* ——— Starlight: dark scheme, from the app's chrome ——— */
+	--sl-color-white: var(--me-chrome-text);
+	--sl-color-gray-1: #e9ecef;
+	--sl-color-gray-2: #ced4da;
+	--sl-color-gray-3: var(--me-chrome-muted);
+	--sl-color-gray-4: var(--me-chrome-faint);
+	--sl-color-gray-5: var(--me-chrome-border);
+	--sl-color-gray-6: var(--me-chrome-hover);
+	--sl-color-black: var(--me-chrome-bg);
+
+	--sl-color-accent-low: #1e3a8a;
+	--sl-color-accent: var(--me-accent-light);
+	--sl-color-accent-high: #93c5fd;
+
+	--sl-color-text: #dee2e6;
+	--sl-color-text-accent: var(--me-accent-light);
+	--sl-color-bg: var(--me-chrome-bg);
+	--sl-color-bg-nav: var(--me-chrome-bg);
+	--sl-color-bg-sidebar: var(--me-chrome-bg-lighter);
+	--sl-color-bg-inline-code: var(--me-chrome-input);
+	--sl-color-hairline-light: var(--me-chrome-border);
+	--sl-color-hairline: var(--me-chrome-border);
+	--sl-color-hairline-shade: var(--me-chrome-input);
+
+	--sl-color-blue-low: #1e3a8a;
+	--sl-color-blue: var(--me-accent-light);
+	--sl-color-blue-high: #bfdbfe;
+	--sl-color-red-low: #7f1d1d;
+	--sl-color-red: var(--me-danger-light);
+	--sl-color-red-high: #fecaca;
+}
+
+/* ——— Starlight: light scheme — the app as it ships ———
+   Starlight's light-mode semantics invert the scale: `white` is the darkest
+   text colour and `black` the page background. */
+:root[data-theme='light'],
+[data-theme='light'] ::backdrop {
+	--sl-color-white: var(--me-slate-900);
+	--sl-color-gray-1: var(--me-slate-800);
+	--sl-color-gray-2: var(--me-slate-700);
+	--sl-color-gray-3: var(--me-slate-600);
+	--sl-color-gray-4: var(--me-slate-500);
+	--sl-color-gray-5: var(--me-slate-300);
+	--sl-color-gray-6: var(--me-slate-100);
+	--sl-color-gray-7: var(--me-slate-50);
+	--sl-color-black: #ffffff;
+
+	--sl-color-accent-low: #dbeafe;
+	--sl-color-accent: var(--me-accent-deep);
+	--sl-color-accent-high: var(--me-accent-deep-hover);
+
+	--sl-color-text: var(--me-slate-800);
+	--sl-color-text-accent: var(--me-accent-deep);
+	--sl-color-text-invert: #ffffff;
+	--sl-color-bg: var(--me-slate-50); /* app body background */
+	--sl-color-bg-nav: var(--me-chrome-bg);
+	--sl-color-bg-sidebar: var(--me-chrome-bg-lighter);
+	--sl-color-bg-inline-code: var(--me-slate-200);
+	--sl-color-bg-accent: var(--me-accent-deep);
+	--sl-color-hairline-light: var(--me-slate-200);
+	--sl-color-hairline: var(--me-slate-200);
+	--sl-color-hairline-shade: var(--me-slate-200);
+
+	--sl-color-blue-low: #dbeafe;
+	--sl-color-blue: var(--me-accent-strong);
+	--sl-color-blue-high: var(--me-accent-deep-hover);
+	--sl-color-green-low: #d1fae5;
+	--sl-color-green: var(--me-accent-green);
+	--sl-color-green-high: #065f46;
+	--sl-color-red-low: #fee2e2;
+	--sl-color-red: var(--me-danger);
+	--sl-color-red-high: #991b1b;
+
+	--sl-shadow-md: var(--me-shadow-popover);
+	--sl-shadow-lg: var(--me-shadow-raised);
+}
+
+/* ——— Typography ——— */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--me-heading-font);
+	font-weight: 600;
+}
+
+/* 650 is the app's display-heading step (splash h1). */
+h1,
+.hero h1 {
+	font-weight: 650;
+	line-height: 1.15;
+}
+
+.hero h1 {
+	font-size: clamp(2.4rem, 4.35vw, 3.9rem);
+}
+
+.hero .tagline {
+	color: var(--sl-color-gray-3);
+	font-size: 1.05rem;
+	line-height: 1.5;
+}
+
+/* The app's text-link idiom is plain at rest and underlined on hover; in
+   running prose the underline stays, faint, so links remain distinguishable. */
+.sl-markdown-content a:not(:where(.not-content *)) {
+	text-decoration: underline;
+	text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.15em;
+	transition: text-decoration-color var(--me-transition-snappy);
+}
+
+.sl-markdown-content a:not(:where(.not-content *)):hover {
+	text-decoration-color: currentColor;
+}
+
+/* The app's micro-label recipe (.home-section-title / .sidebar-section-heading):
+   Inter, 0.72rem, bold, letter-spaced uppercase. Used for every section label
+   that frames content rather than being content. */
+.right-sidebar-panel h2,
+.sidebar-content .large {
+	font-family: var(--me-ui-font);
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.right-sidebar-panel h2 {
+	color: var(--sl-color-gray-4);
+}
+
+/* ——— Surfaces: radii and shadows ——— */
+
+:focus-visible {
+	outline: 2px solid var(--sl-color-accent);
+	outline-offset: 2px;
+}
+
+.sl-markdown-content :is(code, kbd):not(:where(.not-content *)) {
+	border-radius: 4px;
+}
+
+.expressive-code .frame,
+.expressive-code pre {
+	border-radius: var(--me-radius-md);
+}
+
+.starlight-aside {
+	border-radius: var(--me-radius-sm);
+}
+
+.card {
+	border-radius: var(--me-radius-md);
+}
+
+/* The primary CTA recipe shared by the app's splash, home and plans buttons. */
+.sl-link-button.primary {
+	gap: 10px;
+	padding: 14px 22px;
+	border: none;
+	border-radius: var(--me-radius-md);
+	background: var(--sl-color-accent);
+	color: #fff;
+	font-size: 0.95rem;
+	font-weight: 650;
+	box-shadow: 0 1px 4px rgb(29 78 216 / 0.35);
+	transition: background 0.12s, box-shadow 0.12s, transform 0.1s;
+}
+
+.sl-link-button.primary:hover {
+	background: var(--sl-color-accent-high);
+	box-shadow: 0 2px 8px rgb(29 78 216 / 0.45);
+}
+
+.sl-link-button.primary:active {
+	transform: scale(0.98);
+}
+
+.sl-link-button.secondary,
+.sl-link-button.minimal {
+	border-radius: var(--me-radius-md);
+	font-weight: 600;
 }
 
 /* ——— Header: the app's fixed dark chrome bar (frosted glass) ——— */
@@ -32,10 +264,11 @@ header.header {
 	font-family: var(--me-ui-font);
 }
 
+/* The wordmark is brand, not chrome: Sora, like .header-brand-name. */
 .site-title {
 	gap: 10px;
 	color: var(--me-chrome-text);
-	font-family: var(--me-ui-font);
+	font-family: var(--me-heading-font);
 	font-weight: 800;
 	font-size: 0.98rem;
 	white-space: nowrap;
@@ -49,6 +282,7 @@ header.header {
 	border: 1px solid var(--me-chrome-border);
 	border-radius: 999px;
 	color: var(--me-chrome-muted);
+	font-family: var(--me-ui-font);
 	font-size: 0.68rem;
 	font-weight: 600;
 	letter-spacing: 0.04em;
@@ -85,4 +319,48 @@ header.header .social-icons a {
 
 header.header .social-icons a:hover {
 	color: var(--me-chrome-text);
+}
+
+/* ——— Sidebar: the app's dark chrome panel (.worksheet-sidebar) ———
+   The app frames light content with a dark panel on the left, in every mode.
+   Re-scoping Starlight's own colour tokens on the pane re-skins everything in
+   it — group labels, links, carets, the current-page pill — without touching
+   each selector; the same trick the header uses for --sl-color-bg-nav. */
+.sidebar-pane {
+	--sl-color-black: var(--me-chrome-bg-lighter);
+	--sl-color-bg-sidebar: var(--me-chrome-bg-lighter);
+	--sl-color-white: var(--me-chrome-text);
+	--sl-color-gray-1: #e9ecef;
+	--sl-color-gray-2: var(--me-chrome-muted);
+	--sl-color-gray-3: var(--me-chrome-muted);
+	--sl-color-gray-4: var(--me-chrome-faint);
+	--sl-color-gray-5: var(--me-chrome-border);
+	--sl-color-gray-6: var(--me-chrome-hover);
+	--sl-color-text: var(--me-chrome-muted);
+	--sl-color-text-accent: var(--me-accent-strong);
+	--sl-color-text-invert: #ffffff;
+	--sl-color-hairline-light: var(--me-chrome-border);
+	--sl-color-hairline-shade: var(--me-chrome-border);
+	border-inline-end: 1px solid var(--me-chrome-border);
+	box-shadow: 7px 0 18px rgb(15 23 42 / 0.05);
+}
+
+.sidebar-content .large {
+	color: var(--me-chrome-muted);
+}
+
+.sidebar-content a {
+	border-radius: var(--me-radius-sm);
+	transition: background-color var(--me-transition-snappy), color var(--me-transition-snappy);
+}
+
+.sidebar-content a:hover {
+	color: var(--me-chrome-text);
+	background-color: var(--me-chrome-hover);
+}
+
+.sidebar-content a[aria-current='page'],
+.sidebar-content a[aria-current='page']:hover {
+	color: #ffffff;
+	background-color: var(--me-accent-strong);
 }
