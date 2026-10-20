@@ -65,10 +65,6 @@
 	--sl-text-h3: 1.25rem;
 	--sl-text-h4: 1rem;
 
-	/* App header is 64px tall with a 30px logo */
-	--sl-nav-height: 4rem;
-	--sl-nav-logo-height: 1.875rem;
-
 	/* ——— Starlight: dark scheme, from the app's chrome ——— */
 	--sl-color-white: var(--me-chrome-text);
 	--sl-color-gray-1: #e9ecef;
@@ -263,8 +259,55 @@ html:has(> head > link[rel='canonical'][href*='/reference/']) .sl-markdown-conte
 	outline-offset: 2px;
 }
 
-.sl-markdown-content :is(code, kbd):not(:where(.not-content *)) {
+.sl-markdown-content code:not(:where(.not-content *)) {
 	border-radius: 4px;
+}
+
+/* ——— Keys ———
+   A keystroke is drawn as a keycap: a light cap on a thin border with a
+   heavier bottom edge, the legend in Geist Mono — a plain monospaced face,
+   so "Ctrl" and "S" read as key legends without the ornament of a dedicated
+   keyboard font. The cap is CSS, so the face is a one-line swap. A bare "+"
+   between caps is the chord separator. */
+:root {
+	--me-key-font: 'Geist Mono Variable', 'Geist Mono', ui-monospace, Menlo, Consolas, monospace;
+	--me-key-bg: var(--me-chrome-hover);
+	--me-key-border: var(--me-chrome-faint);
+	--me-key-text: var(--me-chrome-text);
+}
+
+:root[data-theme='light'] {
+	--me-key-bg: #ffffff;
+	--me-key-border: var(--me-slate-300);
+	--me-key-text: var(--me-slate-800);
+}
+
+.sl-markdown-content kbd:not(:where(.not-content *)) {
+	display: inline-block;
+	min-width: 1.7em;
+	margin-block: -0.125rem;
+	padding: 0.08em 0.45em 0.12em;
+	border: 1px solid var(--me-key-border);
+	border-bottom-width: 2px;
+	border-radius: 5px;
+	background: var(--me-key-bg);
+	color: var(--me-key-text);
+	font-family: var(--me-key-font);
+	font-size: 0.78em;
+	font-weight: 500;
+	line-height: 1.4;
+	text-align: center;
+	white-space: nowrap;
+}
+
+/* Keys in a table cell share the cell's baseline, and a chord in a "Keys"
+   column stays on one line rather than breaking between its caps. */
+.sl-markdown-content td kbd:not(:where(.not-content *)) {
+	vertical-align: baseline;
+}
+
+.sl-markdown-content td:first-child:has(> kbd):not(:where(.not-content *)) {
+	white-space: nowrap;
 }
 
 .expressive-code .frame,
@@ -309,7 +352,29 @@ html:has(> head > link[rel='canonical'][href*='/reference/']) .sl-markdown-conte
 	font-weight: 600;
 }
 
-/* ——— Header: the app's fixed dark chrome bar (frosted glass) ——— */
+/* ——— Header: the app's fixed dark chrome bar (.app-header / .home-header) ———
+   Laid out by src/components/Header.astro as the app's public pages lay out
+   theirs: the brand at the left, a row of header buttons at the right. Every
+   value below is the app's (app.css: .app-header, .header-brand, .header-logo,
+   .header-icon-button, .primary-auth-button, .header-menu-button), taken from
+   the chrome tokens, so the bar stays dark in light mode as the app's does. */
+
+:root {
+	--sl-nav-height: 64px; /* --app-header-height */
+	--sl-nav-pad-x: 18px;
+	--sl-nav-pad-y: 10px;
+	--sl-nav-gap: 6px; /* .header-actions gap */
+	--sl-menu-button-size: 34px; /* .header-menu-button */
+	/* The app's hover treatment for chrome controls: a blue ring and glow. */
+	--me-accent-ring: 0 0 0 1px rgb(59 130 246 / 0.6);
+	--me-accent-glow: 0 0 10px 1px rgb(59 130 246 / 0.4);
+}
+
+@media (max-width: 900px) {
+	:root {
+		--sl-nav-pad-x: 10px;
+	}
+}
 
 header.header {
 	--sl-color-bg-nav: color-mix(in srgb, var(--me-chrome-bg) 88%, transparent);
@@ -317,10 +382,44 @@ header.header {
 	box-shadow: 0 6px 18px rgb(15 23 42 / 0.08);
 	-webkit-backdrop-filter: blur(12px);
 	backdrop-filter: blur(12px);
+	color: var(--me-chrome-text);
 	font-family: var(--me-ui-font);
 }
 
-/* The wordmark is brand, not chrome: Sora, like .header-brand-name. */
+.me-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px; /* .app-header gap */
+	height: 100%;
+}
+
+/* As Starlight's own title wrapper: a long title is clipped before it covers
+   the controls, with room left for the focus ring. */
+.me-header-brand {
+	display: flex;
+	min-width: 0;
+	overflow: clip;
+	padding: 0.25rem;
+	margin: -0.25rem;
+}
+
+.me-header-actions,
+.me-header-social {
+	display: flex;
+}
+
+/* .me-header-right keeps Starlight's sl-hidden / md:sl-flex display toggling. */
+.me-header-actions,
+.me-header-right,
+.me-header-social {
+	align-items: center;
+	justify-content: flex-end;
+	gap: var(--sl-nav-gap);
+	min-width: 0;
+}
+
+/* The brand (.header-brand): the balloon at 30px and the wordmark in Sora. */
 .site-title {
 	gap: 10px;
 	color: var(--me-chrome-text);
@@ -330,51 +429,178 @@ header.header {
 	white-space: nowrap;
 }
 
-/* Small "Docs" chip so the shared brand still reads as the docs site */
-.site-title::after {
-	content: 'Docs';
-	align-self: center;
-	padding: 0.1rem 0.55rem;
-	border: 1px solid var(--me-chrome-border);
-	border-radius: 999px;
-	color: var(--me-chrome-muted);
-	font-family: var(--me-ui-font);
-	font-size: 0.68rem;
-	font-weight: 600;
-	letter-spacing: 0.04em;
+.site-title img {
+	height: 30px; /* .header-logo */
+	width: auto;
 }
 
-/* The app header is always dark — keep the docs header dark in light mode too,
-   re-skinning the header controls that would otherwise render for a light bar. */
-[data-theme='light'] .site-title {
+/* The app's header button (.header-icon-button), on each control: the search
+   button, the theme switch's label, the GitHub link and the link into the app. */
+header.header button[data-open-modal],
+header.header starlight-theme-select label,
+header.header starlight-lang-select label,
+.me-header-social a,
+.me-header-app {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	min-height: 36px;
+	height: auto;
+	width: auto;
+	max-width: none;
+	margin: 0;
+	padding: 8px 10px;
+	border: 0;
+	border-radius: var(--me-radius-sm);
+	background: transparent;
 	color: var(--me-chrome-text);
+	cursor: pointer;
+	font: inherit;
+	font-size: 0.86rem;
+	font-weight: 700;
+	line-height: normal;
+	white-space: nowrap;
+	text-decoration: none;
+	transition:
+		background-color var(--me-transition-snappy),
+		color var(--me-transition-snappy),
+		box-shadow var(--me-transition-snappy);
 }
 
-[data-theme='light'] header.header button[data-open-modal] {
-	background-color: rgb(65 72 80 / 0.55);
-	border-color: var(--me-chrome-border);
+header.header button[data-open-modal]:hover,
+header.header button[data-open-modal]:focus-visible,
+header.header starlight-theme-select label:hover,
+header.header starlight-theme-select label:focus-within,
+header.header starlight-lang-select label:hover,
+header.header starlight-lang-select label:focus-within,
+.me-header-social a:hover,
+.me-header-social a:focus-visible,
+.me-header-app:hover,
+.me-header-app:focus-visible {
+	background: var(--me-chrome-hover);
+	color: var(--me-chrome-text);
+	box-shadow: var(--me-accent-ring), var(--me-accent-glow);
+	outline: none;
+}
+
+/* The app's header icons are 17px. */
+header.header button[data-open-modal] svg,
+.me-header-social a svg {
+	font-size: 17px;
+}
+
+/* Search: Starlight pushes the shortcut to the far edge of its wide box; here
+   it trails the label as a small muted hint, the app's .menuitem-shortcut. */
+header.header button[data-open-modal] > :last-child {
+	margin-inline-start: 0;
+}
+
+header.header button[data-open-modal] kbd {
+	padding: 0;
+	margin-inline-start: 2px;
+	background: transparent;
 	color: var(--me-chrome-muted);
+	font-family: inherit;
+	font-size: 0.72rem;
+	font-weight: 500;
+	letter-spacing: 0.02em;
 }
 
-[data-theme='light'] header.header button[data-open-modal] kbd {
+/* Below Starlight's desktop breakpoint the search button is icon-only: the
+   app's 36px square. */
+@media (width < 50rem) {
+	header.header button[data-open-modal] {
+		width: 36px;
+		justify-content: center;
+		padding: 8px;
+	}
+}
+
+/* Theme switch: the icon and caret sit inside the button's padding, and the
+   <select> keeps the button's type. */
+header.header starlight-theme-select label,
+header.header starlight-lang-select label {
+	--sl-inline-padding: 0;
+}
+
+header.header starlight-theme-select .label-icon,
+header.header starlight-lang-select .label-icon {
+	inset-inline-start: 10px;
+}
+
+header.header starlight-theme-select .caret,
+header.header starlight-lang-select .caret {
+	inset-inline-end: 10px;
+}
+
+header.header starlight-theme-select select,
+header.header starlight-lang-select select {
+	width: auto;
+	min-width: 0;
+	margin-inline: 0;
+	padding-block: 0;
+	padding-inline: 21px 24px; /* icon + gap, caret + gap */
+	color: inherit;
+	font: inherit;
+}
+
+header.header starlight-theme-select option,
+header.header starlight-lang-select option {
 	background-color: var(--me-chrome-bg);
-	color: var(--me-chrome-muted);
-}
-
-[data-theme='light'] header.header starlight-theme-select label {
-	color: var(--me-chrome-muted);
-}
-
-[data-theme='light'] header.header starlight-theme-select label:hover {
 	color: var(--me-chrome-text);
 }
 
-header.header .social-icons a {
-	color: var(--me-chrome-muted);
+/* GitHub: an icon-only button, the app's 36px square. */
+.me-header-social a {
+	width: 36px;
+	justify-content: center;
+	padding: 8px;
 }
 
-header.header .social-icons a:hover {
+/* The link into the app takes the app's white primary button
+   (.primary-auth-button), set off by the .account-auth margin. */
+.me-header-app {
+	margin-inline-start: 4px;
+	background: var(--me-chrome-text);
+	color: var(--me-chrome-bg);
+}
+
+.me-header-app:hover,
+.me-header-app:focus-visible {
+	background: #ffffff;
+	color: var(--me-chrome-bg);
+}
+
+/* The mobile menu toggle, as the app's worksheet-menu button
+   (.header-menu-button): a bordered 34px square, not Starlight's white disc. */
+.sl-menu-button {
+	align-items: center;
+	justify-content: center;
+	width: var(--sl-menu-button-size);
+	height: var(--sl-menu-button-size);
+	padding: 0;
+	border: 1px solid var(--me-chrome-border);
+	border-radius: var(--me-radius-sm);
+	background-color: transparent;
 	color: var(--me-chrome-text);
+	box-shadow: none;
+	transition:
+		background-color var(--me-transition-snappy),
+		color var(--me-transition-snappy),
+		box-shadow var(--me-transition-snappy);
+}
+
+.sl-menu-button svg {
+	font-size: 18px;
+}
+
+.sl-menu-button:hover,
+.sl-menu-button:focus-visible,
+.sl-menu-button:has(~ :popover-open) {
+	background-color: var(--me-chrome-hover);
+	color: var(--me-chrome-text);
+	box-shadow: var(--me-accent-ring), var(--me-accent-glow);
+	outline: none;
 }
 
 /* ——— Sidebar: the app's dark chrome panel (.worksheet-sidebar) ———

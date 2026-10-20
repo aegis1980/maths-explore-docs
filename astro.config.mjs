@@ -32,7 +32,11 @@ export default defineConfig({
 		starlight({
 			title: 'Maths Explore',
 			description: DEFAULT_DESCRIPTION,
-			logo: { src: './src/assets/balloon_white_h30px.png', alt: '' },
+			// The app's own brand assets (client/public/): the balloon the header
+			// shows at 30px, and the 512px favicon — also the apple-touch-icon, as in
+			// the app's index.html. Keep both files in step with the app.
+			logo: { src: './src/assets/balloon_white.png', alt: '' },
+			favicon: '/favicon.png',
 			// <html lang> and hreflang; the app's pages declare en_GB too.
 			locales: { root: { label: 'English', lang: 'en-GB' } },
 			// Real "last updated" dates from git (the Pages workflow checks out full
@@ -42,6 +46,7 @@ export default defineConfig({
 			// Site-wide SEO tags, mirroring the webapp's (client/src/seo/). Per-page
 			// structured data is added by src/components/Head.astro.
 			head: [
+				{ tag: 'link', attrs: { rel: 'apple-touch-icon', href: absoluteUrl('/favicon.png') } },
 				{ tag: 'meta', attrs: { name: 'theme-color', content: '#212529' } },
 				// Replaces Starlight's default og:locale (it emits the BCP 47 "en-GB";
 				// Open Graph wants "en_GB", which is what the app emits).
@@ -78,12 +83,15 @@ export default defineConfig({
 			customCss: [
 				'@fontsource-variable/inter',
 				'@fontsource-variable/sora',
+				// Keys on the keyboard-shortcuts page are set in Geist Mono (see custom.css).
+				'@fontsource-variable/geist-mono',
 				'katex/dist/katex.min.css',
 				'./src/styles/custom.css',
 			],
 			components: {
 				Footer: './src/components/Footer.astro',
 				Head: './src/components/Head.astro',
+				Header: './src/components/Header.astro',
 			},
 			sidebar: [
 				{
@@ -94,6 +102,7 @@ export default defineConfig({
 						{ label: 'Symbolic maths', slug: 'guides/symbolic-maths' },
 						{ label: 'Matrices', slug: 'guides/matrices' },
 						{ label: 'Tables', slug: 'guides/tables' },
+						{ label: 'Keyboard shortcuts', slug: 'guides/keyboard-shortcuts' },
 					],
 				},
 				{

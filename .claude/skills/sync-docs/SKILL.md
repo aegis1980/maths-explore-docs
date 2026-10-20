@@ -69,7 +69,7 @@ Entries marked **[re-verified 3def0a9]** were checked at app HEAD on 2026-10-15.
 
 Sidebar sections and pages, each with the source-of-truth anchors (paths relative to `D:\math-explore`).
 
-**Pages already published:** `guides/getting-started` (written at `ccd5fed`; labels, plan name and the `/try` on-ramp corrected at `3def0a9`), `guides/symbolic-maths` and `reference/symbolic-functions` (both written at `3def0a9`), and `guides/tables` and `reference/table-functions` (both written at `ca96a56`), and `reference/functions`, `reference/matrix-functions` and `guides/matrices` (all written at **dev** `968b903`).
+**Pages already published:** `guides/getting-started` (written at `ccd5fed`; labels, plan name and the `/try` on-ramp corrected at `3def0a9`), `guides/symbolic-maths` and `reference/symbolic-functions` (both written at `3def0a9`), and `guides/tables` and `reference/table-functions` (both written at `ca96a56`), and `reference/functions`, `reference/matrix-functions`, `guides/matrices` and `guides/keyboard-shortcuts` (all written at **dev** `968b903`).
 
 **Not yet in this plan** — each needs its own entry after the anchors are read. Listed so a sync doesn't mistake them for covered ground:
 
@@ -141,7 +141,7 @@ Sidebar sections and pages, each with the source-of-truth anchors (paths relativ
 > **Pages documenting built-in functions** (`reference/*-functions.md`, and `reference/functions` below) follow the docstring pattern in `CLAUDE.md` → "Function reference pages": one `##` per function, `###` Parameters/Returns/Errors/Example, `tableOfContents` capped at level 2, nothing else on the page — the entries are meant to be lifted into the app as per-function help. The other pages below are lookup tables and are not bound by that shape.
 
 - **reference/block-types** — the five block types, default sizes, auto-height. Anchors: `client/src/hooks/useBlocks.js`, `client/src/components/BlockItem.jsx`
-- **reference/keyboard-shortcuts** — global + math-field + beacon shortcuts. Anchors: `client/src/hooks/useKeyboardShortcuts.js`, `client/src/components/MathBlock.jsx`
+- ~~**reference/keyboard-shortcuts**~~ — **published as `guides/keyboard-shortcuts`** (the user asked for it under Guides) at **dev** `968b903`: files, undo/selection, zoom, the beacon keys, and the keys inside maths, text, table and diagram blocks, each key a `<kbd>` keycap. Anchors: `client/src/hooks/useKeyboardShortcuts.js`, `client/src/utils/platform.js`, `client/src/components/AppHeader.jsx` (menu labels), `client/src/components/CanvasSheet.jsx` (beacon keys, keyboard paste), `client/src/components/MathBlock.jsx` (`:`/`#`/Enter/Space/exponent run), `client/src/utils/mathFieldSetup.js`, `client/src/components/MathToolbar.jsx` (text-mode toggles), `client/src/hooks/useSuggestionNavigation.js`, `client/src/components/TextBlock.jsx` (Enter variants, Alt+digit headings, typed Markdown), `client/src/components/DescriptionBlock.jsx`, `client/src/components/TableBlock.jsx`, `client/src/components/DiagramBlock.jsx`, `client/src/App.jsx` (selection modifiers, zoom range)
 - **reference/math-toolbar** — toolbar constructs (roots, Greek, operators, function library). Anchors: `client/src/components/MathToolbar.jsx`
 - **reference/block-context-menu** — right-click actions and when each appears. Anchors: `client/src/components/BlockItem.jsx`
 - **reference/calcsheet-options** — every Worksheet Options setting (skip the empty Storage page). Anchors: `client/src/components/WorksheetOptionsModal.jsx`

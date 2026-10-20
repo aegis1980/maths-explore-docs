@@ -51,7 +51,7 @@ Pushes to `main` deploy to GitHub Pages via `.github/workflows/astro.yml`, which
 
 ## SEO
 
-The site is indexable and mirrors the app's SEO conventions (`D:\math-explore\client\src\seo\`): canonical/`og:url`/sitemap come from `site`; the share image, `og:locale` (`en_GB`), theme colour and the site-wide JSON-LD graph are in `head` in `astro.config.mjs`; per-page `TechArticle` + breadcrumb JSON-LD is `src/components/Head.astro`; constants (and the app's schema.org `@id`s the docs link to) live in `src/seo.mjs`; `robots.txt` is the endpoint `src/pages/robots.txt.ts`. `public/og-image.png` and `public/favicon.png` are copies of the app's — keep them in step. "Last updated" dates need full git history, which the workflow fetches.
+The site is indexable and mirrors the app's SEO conventions (`D:\math-explore\client\src\seo\`): canonical/`og:url`/sitemap come from `site`; the share image, `og:locale` (`en_GB`), theme colour and the site-wide JSON-LD graph are in `head` in `astro.config.mjs`; per-page `TechArticle` + breadcrumb JSON-LD is `src/components/Head.astro`; constants (and the app's schema.org `@id`s the docs link to) live in `src/seo.mjs`; `robots.txt` is the endpoint `src/pages/robots.txt.ts`. `public/og-image.png`, `public/favicon.png` and the header logo `src/assets/balloon_white.png` are copies of the app's (`client/public/`) — keep them in step. "Last updated" dates need full git history, which the workflow fetches.
 
 ## Astro Documentation
 
