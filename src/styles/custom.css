@@ -59,6 +59,11 @@
 	--sl-font-mono: var(--me-mono-font);
 	--sl-line-height: 1.6;
 	--sl-line-height-headings: 1.2;
+	/* Heading scale: a clear step between levels, H3 well under H2. */
+	--sl-text-h1: 2.25rem;
+	--sl-text-h2: 1.75rem;
+	--sl-text-h3: 1.25rem;
+	--sl-text-h4: 1rem;
 
 	/* App header is 64px tall with a 30px logo */
 	--sl-nav-height: 4rem;
@@ -151,6 +156,7 @@ h5,
 h6 {
 	font-family: var(--me-heading-font);
 	font-weight: 600;
+	letter-spacing: -0.01em;
 }
 
 /* 650 is the app's display-heading step (splash h1). */
@@ -158,6 +164,56 @@ h1,
 .hero h1 {
 	font-weight: 650;
 	line-height: 1.15;
+}
+
+/* ——— Heading hierarchy ———
+   Three levels that read as three: a display H1; an H2 ruled off beneath,
+   with room above it, so a section boundary is visible at a glance; a
+   smaller, quieter H3; and an H4 in the micro-label recipe. */
+
+.sl-markdown-content h2:not(:where(.not-content *)) {
+	margin-top: 2.5em;
+	padding-bottom: 0.3em;
+	border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+.sl-markdown-content h3:not(:where(.not-content *)) {
+	margin-top: 2em;
+	color: var(--sl-color-gray-2);
+}
+
+.sl-markdown-content h4:not(:where(.not-content *)) {
+	font-family: var(--me-ui-font);
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--sl-color-gray-3);
+}
+
+/* Reference pages — one `##` per function, `###` docstring sections. The
+   function name is an identifier, so it is set in the app's mono face (the
+   face the app reserves for code), and the repeated section labels take the
+   micro-label recipe so they frame the entry rather than compete with its
+   name. A page carries no route marker, so reference pages are told apart by
+   their canonical URL; :has() is within Starlight's own browser floor. */
+
+html:has(> head > link[rel='canonical'][href*='/reference/']) .sl-markdown-content h2:not(:where(.not-content *)) {
+	margin-top: 3rem;
+	font-family: var(--me-mono-font);
+	font-size: 1.5rem;
+	letter-spacing: 0;
+}
+
+html:has(> head > link[rel='canonical'][href*='/reference/']) .sl-markdown-content h3:not(:where(.not-content *)) {
+	margin-top: 1.75rem;
+	font-family: var(--me-ui-font);
+	font-size: 0.72rem;
+	font-weight: 700;
+	line-height: 1.6;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--sl-color-gray-4);
 }
 
 .hero h1 {
