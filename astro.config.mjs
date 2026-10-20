@@ -92,6 +92,7 @@ export default defineConfig({
 						// Each item here is one entry in the navigation menu.
 						{ label: 'Getting started', slug: 'guides/getting-started' },
 						{ label: 'Symbolic maths', slug: 'guides/symbolic-maths' },
+						{ label: 'Matrices', slug: 'guides/matrices' },
 						{ label: 'Tables', slug: 'guides/tables' },
 					],
 				},

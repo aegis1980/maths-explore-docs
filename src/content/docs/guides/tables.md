@@ -147,7 +147,7 @@ T[3, 2] &\quad \text{the second column of the second data row}
 \end{aligned}
 $$
 
-This is the same indexing as any matrix you type by hand — and, conversely, `lookup`, `interp` and `interp2` work just as well on a matrix typed directly in a maths block, as long as it has a header row and a key column.
+This is the same indexing as any matrix you type by hand (see [Matrices](/guides/matrices/)) — and, conversely, `lookup`, `interp` and `interp2` work just as well on a matrix typed directly in a maths block, as long as it has a header row and a key column.
 
 ## Display and rounding
 

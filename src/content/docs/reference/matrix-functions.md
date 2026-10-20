@@ -6,7 +6,7 @@ tableOfContents:
   maxHeadingLevel: 2
 ---
 
-The functions that work on vectors and matrices, one entry each. The table functions, which read a matrix as a table, are on [Table functions](/reference/table-functions/); everything else is on [Built-in functions](/reference/functions/).
+The functions that work on vectors and matrices, one entry each. For writing a matrix, indexing it and the bars `|M|`, see [Matrices](/guides/matrices/); the table functions, which read a matrix as a table, are on [Table functions](/reference/table-functions/), and everything else on [Built-in functions](/reference/functions/).
 
 ## column
 
