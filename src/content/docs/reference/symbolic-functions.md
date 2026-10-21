@@ -1,12 +1,12 @@
 ---
 title: Symbolic functions
-description: The four symbolic operations — simplify, expand, derivative and solve — one entry each with signature, parameters, returns, errors and an example.
+description: The four symbolic operations, namely simplify, expand, derivative and solve, one entry each with signature, parameters, returns, errors and an example.
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 2
 ---
 
-For how these behave on a calcsheet — the substitution rules, the arrow spelling, the toolbar — see [Symbolic maths](/guides/symbolic-maths/).
+For how these behave on a calcsheet, including the substitution rules, the arrow spelling and the toolbar, see [Symbolic maths](/guides/symbolic-maths/).
 
 ## simplify
 
@@ -22,7 +22,7 @@ Collects like terms and tidies an expression. Names the sheet defines above the 
 
 | Parameter | Meaning |
 | :-- | :-- |
-| `expression` | Any expression. Sheet-defined names in it are substituted — plain numbers as constants, your own functions by their bodies. A name holding units, a matrix or another symbolic result stays as a symbol. |
+| `expression` | Any expression. Sheet-defined names in it are substituted: plain numbers as constants, your own functions by their bodies. A name holding units, a matrix or another symbolic result stays as a symbol. |
 
 ### Returns
 
@@ -80,7 +80,7 @@ derivative(expression, variable)
 expression → derivative, variable
 ```
 
-Differentiates `expression` with respect to `variable`, applying the chain rule. The variable is shielded from substitution — it stays symbolic even when the sheet defines it — and its definition, if any, is applied to the result afterwards.
+Differentiates `expression` with respect to `variable`, applying the chain rule. The variable is shielded from substitution, staying symbolic even when the sheet defines it, and its definition, if any, is applied to the result afterwards.
 
 ### Parameters
 
@@ -91,7 +91,7 @@ Differentiates `expression` with respect to `variable`, applying the chain rule.
 
 ### Returns
 
-The derivative as an expression, or its value once nothing in it is unknown. Assigned to a function — $g(x) := \operatorname{derivative}(f(x),\, x)$ — the result is a genuinely callable function.
+The derivative as an expression, or its value once nothing in it is unknown. Assigned to a function, $g(x) := \operatorname{derivative}(f(x),\, x)$, the result is a genuinely callable function.
 
 ### Errors
 

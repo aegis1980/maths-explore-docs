@@ -28,6 +28,14 @@ There are no tests or linters configured.
 
 The Math Explore app source at `D:\math-explore` is the **source of truth** for all docs content (read access is granted via `permissions.additionalDirectories` in `.claude/settings.json`). Derive feature behavior, syntax rules, and tier availability from that code — never write docs from memory. Start with `D:\math-explore\CLAUDE.md` for orientation. Use the `/sync-docs` skill to populate or refresh pages; it encodes the feature → source-file → docs-page mapping and the update process.
 
+### Prose style
+
+Published pages are the product talking to its users, so the writing stays plain.
+
+- **No em dashes (`—`) in page text.** This covers body prose, headings, list items, table cells and frontmatter `description`. Recast instead: a colon introduces what follows, a full stop splits two statements, commas or brackets enclose an aside. The same goes for any site string outside the content collection, such as the footer and the site description in `src/seo.mjs`.
+- **The one exception is verbatim product text.** Error messages, menu labels and other strings quoted from the app are reproduced exactly, em dash and all, because the reader is matching them against what the screen shows. Several of the app's own messages contain one (for example `matrixIndexing.js`, `tableLookup.js`). Quote, do not tidy.
+- Source comments in `.astro`, `.mjs` and `.css` files are not page text and are not bound by this.
+
 ### Function reference pages
 
 Reference pages that document the app's **built-in functions** (`reference/symbolic-functions.md`, `reference/table-functions.md`, and any future function family) follow a docstring pattern. The entries are intended to be surfaced **inside the app** as concise per-function help, so each must stand alone and be separable from the page around it. This applies only to function pages: other reference pages — units, constants, keyboard shortcuts, calcsheet options and similar lookup tables — are ordinary reference content and are not bound by this shape.

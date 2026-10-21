@@ -1,6 +1,6 @@
 ---
 title: Matrix functions
-description: The functions that work on vectors and matrices — column, cross, det, dot, inv, norm, row and transpose — one entry each with signature, parameters, returns, errors and an example.
+description: The functions that work on vectors and matrices, namely column, cross, det, dot, inv, norm, row and transpose, one entry each with signature, parameters, returns, errors and an example.
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 2
@@ -20,7 +20,7 @@ One column of a matrix, counting from 1.
 
 | Parameter | Meaning |
 | :-- | :-- |
-| `M` | A matrix with rows and columns. A table block's name works too — see [Tables](/guides/tables/). |
+| `M` | A matrix with rows and columns. A table block's name works too. See [Tables](/guides/tables/). |
 | `j` | The column number, from 1. |
 
 ### Returns
@@ -119,7 +119,7 @@ The dot product of two vectors of the same length. Units multiply through.
 
 | Parameter | Meaning |
 | :-- | :-- |
-| `a` | A vector — a plain list or a column matrix. |
+| `a` | A vector: a plain list or a column matrix. |
 | `b` | A vector of the same length. |
 
 ### Returns
@@ -182,7 +182,7 @@ norm(v, p)
 norm(M)
 ```
 
-The length of a vector — the everyday case — including a vector of quantities, as long as they share a unit. Of a matrix, the Frobenius norm; of a number, its magnitude. The bars `|v|` around a vector mean the same thing, and also accept a column written as a matrix, which `norm` itself does not.
+The length of a vector, the everyday case, including a vector of quantities, as long as they share a unit. Of a matrix, the Frobenius norm; of a number, its magnitude. The bars `|v|` around a vector mean the same thing, and also accept a column written as a matrix, which `norm` itself does not.
 
 ### Parameters
 
@@ -201,7 +201,7 @@ The length, in the unit of the first element; a number for plain values.
 | Message | When |
 | :-- | :-- |
 | *The length of a vector needs every element in the same unit* | Some elements carry a unit and others don't, or the units differ in kind |
-| *Invalid matrix dimensions* | A column vector written as an $n \times 1$ matrix — use the bars, or a plain list |
+| *Invalid matrix dimensions* | A column vector written as an $n \times 1$ matrix. Use the bars, or a plain list |
 | *Too few arguments in function norm* / *Too many arguments in function norm* | No argument, or more than two |
 
 ### Example
@@ -226,7 +226,7 @@ One row of a matrix, counting from 1.
 
 | Parameter | Meaning |
 | :-- | :-- |
-| `M` | A matrix with rows and columns. A table block's name works too — see [Tables](/guides/tables/). |
+| `M` | A matrix with rows and columns. A table block's name works too. See [Tables](/guides/tables/). |
 | `i` | The row number, from 1. |
 
 ### Returns

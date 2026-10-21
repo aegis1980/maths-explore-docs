@@ -1,18 +1,18 @@
 ---
 title: Keyboard shortcuts
-description: Every keyboard shortcut in Maths Explore — files, undo and selection, zoom, adding blocks at the beacon, and the keys inside maths, text, table and diagram blocks.
+description: Every keyboard shortcut in Maths Explore, covering files, undo and selection, zoom, adding blocks at the beacon, and the keys inside maths, text, table and diagram blocks.
 ---
 
 Maths Explore is built to be driven from the keyboard: you can add a maths block, write it and move on to the next without reaching for the mouse. This page lists every shortcut.
 
-On a Mac, press <kbd>⌘</kbd> where <kbd>Ctrl</kbd> is shown and <kbd>⌥</kbd> where <kbd>Alt</kbd> is — the app's own menus show the Mac keys. Shortcuts are paused while a dialog is open, and the sheet-wide ones (undo, select all, copy, delete) stand aside while you are typing inside a block, so those keys keep their ordinary meaning in text.
+On a Mac, press <kbd>⌘</kbd> where <kbd>Ctrl</kbd> is shown and <kbd>⌥</kbd> where <kbd>Alt</kbd> is. The app's own menus show the Mac keys. Shortcuts are paused while a dialog is open, and the sheet-wide ones (undo, select all, copy, delete) stand aside while you are typing inside a block, so those keys keep their ordinary meaning in text.
 
 ## Files
 
 | Keys | Does |
 | :-- | :-- |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>N</kbd> | New calcsheet. The <kbd>Alt</kbd> is deliberate — browsers keep plain <kbd>Ctrl</kbd> + <kbd>N</kbd> for themselves. Not while typing in a block. |
-| <kbd>Ctrl</kbd> + <kbd>O</kbd> | Open — goes to Home, where your calcsheets are listed. |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>N</kbd> | New calcsheet. The <kbd>Alt</kbd> is deliberate: browsers keep plain <kbd>Ctrl</kbd> + <kbd>N</kbd> for themselves. Not while typing in a block. |
+| <kbd>Ctrl</kbd> + <kbd>O</kbd> | Open: goes to Home, where your calcsheets are listed. |
 | <kbd>Ctrl</kbd> + <kbd>S</kbd> | Save. |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Save as…, once the sheet is saved to a file. Before that it is the same as Save, which asks where to save. |
 | <kbd>Ctrl</kbd> + <kbd>P</kbd> | Print. The same dialog exports a PDF. |
@@ -26,7 +26,7 @@ On a Mac, press <kbd>⌘</kbd> where <kbd>Ctrl</kbd> is shown and <kbd>⌥</kbd>
 | <kbd>Ctrl</kbd> + <kbd>A</kbd> | Select every block. |
 | <kbd>Shift</kbd> + click or <kbd>Ctrl</kbd> + click | Add a block to the selection, or take it out again. A grouped block brings its whole group. |
 | <kbd>Ctrl</kbd> + <kbd>C</kbd> / <kbd>Ctrl</kbd> + <kbd>X</kbd> | Copy or cut the selected blocks. They paste into any calcsheet, including one open in another tab. |
-| <kbd>Ctrl</kbd> + <kbd>V</kbd> | Paste, just beside the selected blocks — or in the middle of the view when nothing is selected. With the insertion beacon showing, blocks paste at the beacon instead. |
+| <kbd>Ctrl</kbd> + <kbd>V</kbd> | Paste, just beside the selected blocks, or in the middle of the view when nothing is selected. With the insertion beacon showing, blocks paste at the beacon instead. |
 | <kbd>Delete</kbd> | Remove the selected blocks. |
 
 ## Zoom
@@ -46,7 +46,7 @@ Click an empty spot on a page and the insertion beacon appears there with its to
 
 | Keys | Does |
 | :-- | :-- |
-| any letter, digit or symbol | A maths block that starts with that character — just begin typing the maths. |
+| any letter, digit or symbol | A maths block that starts with that character. Just begin typing the maths. |
 | <kbd>Enter</kbd> | An empty maths block. |
 | <kbd>'</kbd> | A text block. |
 | <kbd>#</kbd> | A user-function block. |
@@ -62,7 +62,7 @@ Click an empty spot on a page and the insertion beacon appears there with its to
 | <kbd>#</kbd> | In an empty block, inserts a function-definition template. |
 | <kbd>Enter</kbd> | Finishes the block and opens a new maths block below it. |
 | <kbd>Space</kbd> | Inside a subscript or superscript: leaves the script. Anywhere else: a visible space, ignored when the maths is evaluated. |
-| <kbd>^</kbd> then digits | The whole number goes into the exponent — type `2^10` straight through, no arrow key needed. |
+| <kbd>^</kbd> then digits | The whole number goes into the exponent. Type `2^10` straight through, with no arrow key needed. |
 | <kbd>"</kbd> or <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> | Switch to text mode, for a label such as a table key. The same keys switch back to maths. |
 
 While the suggestion menu is open:
@@ -81,7 +81,7 @@ While the suggestion menu is open:
 | <kbd>Ctrl</kbd> + <kbd>Enter</kbd> | A new paragraph within the block. |
 | <kbd>Shift</kbd> + <kbd>Enter</kbd> | A line break. |
 | <kbd>Alt</kbd> + <kbd>1</kbd> … <kbd>Alt</kbd> + <kbd>4</kbd> | Heading level 1 to 4. |
-| <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>1</kbd> … <kbd>4</kbd> | A numbered heading, level 1 to 4 — numbered continuously through the sheet. |
+| <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>1</kbd> … <kbd>4</kbd> | A numbered heading, level 1 to 4, numbered continuously through the sheet. |
 | <kbd>Ctrl</kbd> + click a link | Opens it in a new tab. A plain click places the caret. |
 
 Markdown typed into a text block formats as you go: a second <kbd>*</kbd> or <kbd>_</kbd> turns bold on and off, a second <kbd>~</kbd> strikethrough; and at the start of a line, `#`, `##` or `###` followed by a space makes a heading, `-` a bulleted list, `1.` a numbered list and `>` a quote.
@@ -96,7 +96,7 @@ In a description block under a maths block, <kbd>Ctrl</kbd> + <kbd>B</kbd> is bo
 | <kbd>Enter</kbd> | Down one row. On the last row, appends a new one. |
 | <kbd>Escape</kbd> | Leave the cell. |
 | <kbd>Tab</kbd> or <kbd>Enter</kbd> in the name field | Into the first cell. |
-| <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> | Type the cell as text — a word in a body cell is otherwise read as maths. |
+| <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> | Type the cell as text. A word in a body cell is otherwise read as maths. |
 
 ## In a diagram
 
@@ -105,7 +105,7 @@ In a description block under a maths block, <kbd>Ctrl</kbd> + <kbd>B</kbd> is bo
 | <kbd>Escape</kbd> | Cancel the drawing tool, or the shape in progress. |
 | <kbd>Enter</kbd> | Finish a multiline. |
 | <kbd>Delete</kbd> or <kbd>Backspace</kbd> | While drawing a multiline: remove its last point. Otherwise: delete the selected shapes. |
-| <kbd>←</kbd> <kbd>↑</kbd> <kbd>→</kbd> <kbd>↓</kbd> | Nudge the selected shapes by 1 px — 10 px with <kbd>Shift</kbd>. Each nudge is one undo step. |
+| <kbd>←</kbd> <kbd>↑</kbd> <kbd>→</kbd> <kbd>↓</kbd> | Nudge the selected shapes by 1 px, or 10 px with <kbd>Shift</kbd>. Each nudge is one undo step. |
 | <kbd>Shift</kbd> + drag | With the select tool: a selection box around several shapes. |
 | <kbd>Shift</kbd> while drawing a line | Holds the segment to a multiple of 45°. |
 | <kbd>Shift</kbd> while moving | Moves along a 45° line from where the drag began. |

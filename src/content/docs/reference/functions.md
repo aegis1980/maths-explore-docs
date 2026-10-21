@@ -1,12 +1,12 @@
 ---
 title: Built-in functions
-description: Every built-in function of a maths block — arithmetic, rounding, logarithms, trigonometry, statistics, if and root — one entry each with signature, parameters, returns, errors and an example.
+description: Every built-in function of a maths block, covering arithmetic, rounding, logarithms, trigonometry, statistics, if and root, one entry each with signature, parameters, returns, errors and an example.
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 2
 ---
 
-One entry per function, in the order autosuggest lists them. Matrix and vector functions, the symbolic operations and the table functions have pages of their own — [Matrix functions](/reference/matrix-functions/), [Symbolic functions](/reference/symbolic-functions/) and [Table functions](/reference/table-functions/) — and the [guides](/guides/getting-started/) cover units, angles and how results are shown.
+One entry per function, in the order autosuggest lists them. Matrix and vector functions, the symbolic operations and the table functions have pages of their own: [Matrix functions](/reference/matrix-functions/), [Symbolic functions](/reference/symbolic-functions/) and [Table functions](/reference/table-functions/). The [guides](/guides/getting-started/) cover units, angles and how results are shown.
 
 ## abs
 
@@ -14,7 +14,7 @@ One entry per function, in the order autosuggest lists them. Matrix and vector f
 abs(x)
 ```
 
-The absolute value of a number or quantity. On a matrix it applies to every element. The bars `|x|` are a different reading — the length of a vector or the determinant of a square matrix — see [Matrix functions](/reference/matrix-functions/).
+The absolute value of a number or quantity. On a matrix it applies to every element. The bars `|x|` are a different reading, the length of a vector or the determinant of a square matrix. See [Matrix functions](/reference/matrix-functions/).
 
 ### Parameters
 
@@ -309,7 +309,7 @@ $$
 cos(x)
 ```
 
-The cosine. A plain number is taken as radians; write the angle with a unit — `60.deg` — to work in degrees.
+The cosine. A plain number is taken as radians; write the angle with a unit, `60.deg`, to work in degrees.
 
 ### Parameters
 
@@ -509,13 +509,13 @@ $$
 if(condition, then, else)
 ```
 
-A conditional value. Only the branch that is taken is evaluated, so an error in the other branch does no harm — `if(x > 0, 1/x, 0)` is safe at $x = 0$. Comparisons of text compare the text; a comparison of two matrices is true when every element matches.
+A conditional value. Only the branch that is taken is evaluated, so an error in the other branch does no harm: `if(x > 0, 1/x, 0)` is safe at $x = 0$. Comparisons of text compare the text; a comparison of two matrices is true when every element matches.
 
 ### Parameters
 
 | Parameter | Meaning |
 | :-- | :-- |
-| `condition` | Anything that is true or false: a comparison such as `a > b`, comparisons joined with `and`, `or`, `not`, or a number — zero is false, anything else true. |
+| `condition` | Anything that is true or false: a comparison such as `a > b`, comparisons joined with `and`, `or`, `not`, or a number, where zero is false and anything else true. |
 | `then` | The value when the condition holds. |
 | `else` | The value otherwise. |
 
@@ -579,7 +579,7 @@ log(x)
 log(x, base)
 ```
 
-The logarithm. With one argument it is **base 10**, as on paper and in Mathcad — not the natural log. With two arguments it is the log of `x` to `base`. The `\log` command is the same function; for the natural log use `ln`.
+The logarithm. With one argument it is **base 10**, as on paper and in Mathcad, not the natural log. With two arguments it is the log of `x` to `base`. The `\log` command is the same function; for the natural log use `ln`.
 
 ### Parameters
 
@@ -659,7 +659,7 @@ The largest of several values, or of all the values in a matrix. Quantities are 
 
 ### Returns
 
-The largest value — or, with `dimension`, a vector of them.
+The largest value, or a vector of them when `dimension` is given.
 
 ### Errors
 
@@ -730,7 +730,7 @@ The middle value once the values are sorted; the average of the two middle value
 | Parameter | Meaning |
 | :-- | :-- |
 | `a, b, c, …` | The values. All numbers, or all quantities of one kind. |
-| `A` | A list or matrix of values — every element counts. |
+| `A` | A list or matrix of values. Every element counts. |
 
 ### Returns
 
@@ -772,7 +772,7 @@ The smallest of several values, or of all the values in a matrix. Quantities are
 
 ### Returns
 
-The smallest value — or, with `dimension`, a vector of them.
+The smallest value, or a vector of them when `dimension` is given.
 
 ### Errors
 
@@ -832,7 +832,7 @@ mode(a, b, c, …)
 mode(A)
 ```
 
-The most frequent value. The result is always a vector, because there may be several — and when every value occurs equally often, all of them are returned.
+The most frequent value. The result is always a vector, because there may be several, and when every value occurs equally often all of them are returned.
 
 ### Parameters
 
@@ -874,7 +874,7 @@ The product of all the values. Units multiply through.
 | Parameter | Meaning |
 | :-- | :-- |
 | `a, b, c, …` | The values. |
-| `A` | A list or matrix of values — every element counts. |
+| `A` | A list or matrix of values. Every element counts. |
 
 ### Returns
 
@@ -907,7 +907,7 @@ random(size, max)
 random(size, min, max)
 ```
 
-A random number, uniformly distributed. The sheet re-evaluates whenever anything changes, so the value changes too — it is not fixed once drawn.
+A random number, uniformly distributed. The sheet re-evaluates whenever anything changes, so the value changes too. It is not fixed once drawn.
 
 ### Parameters
 
@@ -939,13 +939,13 @@ $$
 root(f, a, b)
 ```
 
-A numerical root of $f(x) = 0$ between `a` and `b`, found by Brent's method. The bracket must straddle the root — $f(a)$ and $f(b)$ of opposite sign — and the root is returned in the bracket's units. This is the fallback `solve` points you at when an equation has no closed form.
+A numerical root of $f(x) = 0$ between `a` and `b`, found by Brent's method. The bracket must straddle the root, with $f(a)$ and $f(b)$ of opposite sign, and the root is returned in the bracket's units. This is the fallback `solve` points you at when an equation has no closed form.
 
 ### Parameters
 
 | Parameter | Meaning |
 | :-- | :-- |
-| `f` | A function of one variable, defined above — `f(x) := …` — and passed by name. Its value only matters by sign, so it may carry units. |
+| `f` | A function of one variable, defined above as `f(x) := …` and passed by name. Its value only matters by sign, so it may carry units. |
 | `a` | One end of the bracket. A number, or a quantity. |
 | `b` | The other end, in the same units as `a`. |
 
@@ -1065,7 +1065,7 @@ $$
 sin(x)
 ```
 
-The sine. A plain number is taken as **radians**; write the angle with a unit — `30.deg` — to work in degrees.
+The sine. A plain number is taken as **radians**; write the angle with a unit, `30.deg`, to work in degrees.
 
 ### Parameters
 
@@ -1168,14 +1168,14 @@ std(A)
 std(A, normalization)
 ```
 
-The standard deviation — by default the sample standard deviation, dividing by $n - 1$. Quantities keep their unit.
+The standard deviation. By default this is the sample standard deviation, dividing by $n - 1$. Quantities keep their unit.
 
 ### Parameters
 
 | Parameter | Meaning |
 | :-- | :-- |
 | `a, b, c, …` | The values. |
-| `A` | A list or matrix of values — every element counts. |
+| `A` | A list or matrix of values. Every element counts. |
 | `normalization` | Optional, as text: `"unbiased"` (default, divide by $n-1$), `"uncorrected"` (divide by $n$) or `"biased"` (divide by $n+1$). |
 
 ### Returns
@@ -1243,7 +1243,7 @@ $$
 tan(x)
 ```
 
-The tangent. A plain number is taken as radians; write the angle with a unit — `45.deg` — to work in degrees.
+The tangent. A plain number is taken as radians; write the angle with a unit, `45.deg`, to work in degrees.
 
 ### Parameters
 
@@ -1307,14 +1307,14 @@ variance(A)
 variance(A, normalization)
 ```
 
-The variance — by default the sample variance, dividing by $n - 1$. For quantities the unit is squared.
+The variance. By default this is the sample variance, dividing by $n - 1$. For quantities the unit is squared.
 
 ### Parameters
 
 | Parameter | Meaning |
 | :-- | :-- |
 | `a, b, c, …` | The values. |
-| `A` | A list or matrix of values — every element counts. |
+| `A` | A list or matrix of values. Every element counts. |
 | `normalization` | Optional, as text: `"unbiased"` (default, divide by $n-1$), `"uncorrected"` (divide by $n$) or `"biased"` (divide by $n+1$). |
 
 ### Returns

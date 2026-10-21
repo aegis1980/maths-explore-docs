@@ -1,8 +1,12 @@
 ---
 // Starlight footer override: keeps the default docs footer (prev/next links
-// etc.) and appends the webapp's shared site footer bar (see the app's
-// Footer.jsx / .site-footer styles), pointing back at the product site.
+// etc.) and appends the webapp's shared site footer bar, mirrored one for one
+// from the app's Footer.jsx / .site-footer styles (client/src/styles/app.css)
+// — same brand line, same links (absolute, into the app), same type, colours
+// and hover green. The docs column provides the side gutters the app's
+// .site-footer-inner gets from its own padding.
 import Default from '@astrojs/starlight/components/Footer.astro';
+import { APP_URL } from '../seo.mjs';
 
 const year = new Date().getFullYear();
 ---
@@ -12,43 +16,50 @@ const year = new Date().getFullYear();
 <footer class="me-site-footer">
 	<div class="me-site-footer-inner">
 		<span class="me-site-footer-brand">
-			Maths Explore<span class="me-site-footer-copyright">© {year} Explorare Ltd.</span>
+			Maths Explore<span class="me-site-footer-copyright">© {year} Techos</span>
 		</span>
-		<nav class="me-site-footer-links" aria-label="Maths Explore">
-			<a href="https://www.mathsexplore.com">Open Maths Explore</a>
-			<a href="https://www.mathsexplore.com/plans">Plans</a>
+		<nav class="me-site-footer-links" aria-label="Footer">
+			<a href={`${APP_URL}/samples`}>Samples</a>
+			<a href={`${APP_URL}/plans`}>Plans</a>
+			<a href={`${APP_URL}/contact`}>Contact</a>
+			<a href={`${APP_URL}/terms`}>Terms</a>
 		</nav>
 	</div>
 </footer>
 
 <style>
+	/* .site-footer */
 	.me-site-footer {
 		margin-top: 2.5rem;
 		border-top: 1px solid var(--me-slate-200);
 		font-family: var(--me-ui-font);
 	}
 
+	/* .site-footer-inner (side padding comes from the docs column) */
 	.me-site-footer-inner {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: 16px;
 		flex-wrap: wrap;
-		padding-top: 18px;
+		padding: 18px 0;
 	}
 
+	/* .site-footer-brand */
 	.me-site-footer-brand {
 		font-size: 0.85rem;
 		font-weight: 500;
 		color: var(--me-slate-900);
 	}
 
+	/* .site-footer-copyright */
 	.me-site-footer-copyright {
 		font-weight: 500;
 		color: var(--me-slate-400);
 		margin-left: 10px;
 	}
 
+	/* .site-footer-links */
 	.me-site-footer-links {
 		display: flex;
 		align-items: center;
@@ -64,5 +75,4 @@ const year = new Date().getFullYear();
 	.me-site-footer-links a:hover {
 		color: var(--me-accent-green);
 	}
-
 </style>
