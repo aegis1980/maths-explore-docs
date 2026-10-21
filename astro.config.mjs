@@ -92,6 +92,8 @@ export default defineConfig({
 				Footer: './src/components/Footer.astro',
 				Head: './src/components/Head.astro',
 				Header: './src/components/Header.astro',
+				ThemeProvider: './src/components/ThemeProvider.astro',
+				MobileMenuFooter: './src/components/MobileMenuFooter.astro',
 			},
 			sidebar: [
 				{

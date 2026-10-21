@@ -1,0 +1,13 @@
+---
+// Starlight ThemeProvider override. The docs have one scheme — the app's own
+// look, dark chrome around a light page — so there is nothing to choose:
+// Starlight's provider would read a stored preference or the OS setting and
+// might land on its dark scheme, which the stylesheet no longer carries. This
+// sets the light scheme inline, before paint, so there is no flash. The theme
+// switcher is gone from the header (Header.astro), so the picker-syncing
+// helper the default provider exposes isn't needed either.
+---
+
+<script is:inline>
+	document.documentElement.dataset.theme = 'light';
+</script>

@@ -24,7 +24,7 @@ const year = new Date().getFullYear();
 <style>
 	.me-site-footer {
 		margin-top: 2.5rem;
-		border-top: 1px solid var(--sl-color-hairline);
+		border-top: 1px solid var(--me-slate-200);
 		font-family: var(--me-ui-font);
 	}
 
@@ -40,7 +40,7 @@ const year = new Date().getFullYear();
 	.me-site-footer-brand {
 		font-size: 0.85rem;
 		font-weight: 500;
-		color: var(--sl-color-white);
+		color: var(--me-slate-900);
 	}
 
 	.me-site-footer-copyright {
@@ -57,7 +57,7 @@ const year = new Date().getFullYear();
 
 	.me-site-footer-links a {
 		font-size: 0.85rem;
-		color: var(--sl-color-gray-3);
+		color: var(--me-slate-600);
 		text-decoration: none;
 	}
 
@@ -65,20 +65,4 @@ const year = new Date().getFullYear();
 		color: var(--me-accent-green);
 	}
 
-	/* Exact app values in light mode; dark mode brightens the hover green for contrast */
-	:global([data-theme='light']) .me-site-footer {
-		border-top-color: var(--me-slate-200);
-	}
-
-	:global([data-theme='light']) .me-site-footer-brand {
-		color: var(--me-slate-900);
-	}
-
-	:global([data-theme='light']) .me-site-footer-links a {
-		color: var(--me-slate-600);
-	}
-
-	:global([data-theme='dark']) .me-site-footer-links a:hover {
-		color: color-mix(in srgb, var(--me-accent-green) 55%, white);
-	}
 </style>

@@ -1,0 +1,42 @@
+---
+// Starlight MobileMenuFooter override: the strip at the foot of the mobile
+// menu. Starlight's carries the social icons, the theme switch and the
+// language switch; this one drops the theme switch (the docs have the app's
+// one scheme — ThemeProvider.astro) and adds the link into the app, which on
+// a phone is otherwise lost with the header's hidden right-hand group. The
+// link takes the header's white button (custom.css, .me-header-app).
+import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
+import SocialIcons from 'virtual:starlight/components/SocialIcons';
+import { APP_URL } from '../seo.mjs';
+---
+
+<div class="mobile-preferences sl-flex">
+	<div class="social-icons">
+		<SocialIcons />
+	</div>
+	<LanguageSelect />
+	<a class="me-header-app" href={APP_URL}>Open Maths Explore</a>
+</div>
+
+<style>
+	@layer starlight.core {
+		.social-icons {
+			display: flex;
+			margin-inline-end: auto;
+			gap: 1rem;
+			align-items: center;
+			padding-block: 1rem;
+		}
+		.social-icons:empty {
+			display: none;
+		}
+		.mobile-preferences {
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: wrap;
+			border-top: 1px solid var(--sl-color-gray-6);
+			column-gap: 1rem;
+			padding: 0.5rem 0;
+		}
+	}
+</style>

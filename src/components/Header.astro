@@ -2,17 +2,17 @@
 // Starlight header override, laid out like the webapp's public-page header
 // (client/src/components/PublicPageLayout.jsx: `.app-header.home-header`):
 // the brand at the left and, at the right, a row of the app's header buttons
-// (`.header-actions` / `.account-auth`) — search, GitHub, the theme switch
-// and, in the slot the app gives its white Sign up / Upgrade button, a link
-// into the app. The pieces are Starlight's own; their look is set in
-// src/styles/custom.css ("Header"), from the app's stylesheet.
+// (`.header-actions` / `.account-auth`) — search, GitHub and, in the slot the
+// app gives its white Sign up / Upgrade button, a link into the app. There is
+// no theme switch: the docs have the app's one scheme (ThemeProvider.astro).
+// The pieces are Starlight's own; their look is set in src/styles/custom.css
+// ("Header"), from the app's stylesheet.
 import config from 'virtual:starlight/user-config';
 
 import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
 import Search from 'virtual:starlight/components/Search';
 import SiteTitle from 'virtual:starlight/components/SiteTitle';
 import SocialIcons from 'virtual:starlight/components/SocialIcons';
-import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
 import { APP_URL } from '../seo.mjs';
 
 // As Starlight's own Header: render search when Pagefind is on or the search
@@ -31,7 +31,6 @@ const shouldRenderSearch =
 			<div class="me-header-social">
 				<SocialIcons />
 			</div>
-			<ThemeSelect />
 			<LanguageSelect />
 			<a class="me-header-app" href={APP_URL}>Open Maths Explore</a>
 		</div>
