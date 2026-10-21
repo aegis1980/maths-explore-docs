@@ -120,7 +120,7 @@ Both return every root, as a vector, with the real roots in ascending order, $-2
 
 ## The arrow spelling
 
-Every operation has a second spelling: Mathcad's symbolic arrow, written $\text{expression} \to \text{keyword}$. Type `->` in a maths block, or use the toolbar, and the operation goes **after** the expression:
+Every operation has a second spelling: Mathcad's symbolic arrow, written $\text{expression} \to \text{keyword}$ (if you grew up on Mathcad, your thumbs already know it). Type `->` in a maths block, or use the toolbar, and the operation goes **after** the expression:
 
 $$
 \begin{aligned}
@@ -199,7 +199,7 @@ Add $x := 2$ and the same block gives $= 12\ \mathrm{m}$, units and all.
 - **A symbolic result is not a number.** If you use a name holding an expression where a number is wanted, the block tells you so, and names what the expression is still waiting to know. Define the remaining unknowns and it resolves itself.
 - **Decimal places and result-unit overrides do not apply** while a result is still an expression: there is no figure to round and no value to convert. Both come back as soon as the result evaluates to a number.
 - **Subscripted and Greek names are preserved** in the result, so typing `F_cy` comes back as $F_{cy}$, exactly as you typed it.
-- **A definition that refers to itself**, or definitions nested more than eight deep, cannot be worked out symbolically; the block reports that rather than hanging.
+- **A definition that refers to itself**, or definitions nested more than eight deep, cannot be worked out symbolically – the block says so rather than hanging.
 - **A sheet variable named after an operation shadows it**, exactly as it does for any other built-in function.
 
 ## See also

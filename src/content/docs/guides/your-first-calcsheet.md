@@ -31,7 +31,7 @@ With the marker showing, press <kbd>'</kbd>. That's the shortcut for a text bloc
 
 ## 4. Define the two sides
 
-Click below the heading and type `a:3.m`, just like that. The `:` key types the assignment symbol `:=`, and `.m` attaches the unit metres, shown in blue. Then click a little lower and type `b:4.m` the same way.
+Click below the heading and type `a:3.m`, just like that. The `:` key types the assignment symbol `:=`, and `.m` attaches the unit metres, shown in blue. Then click a little lower and type `b:4.m` the same way. (Sides of 3 and 4; anyone who has ever set out a right angle knows where this is going.)
 
 ![Two maths blocks reading a := 3.m and b := 4.m](../../../assets/first-calcsheet/two-defs.png)
 
@@ -71,7 +71,7 @@ Click the small $\mathrm{m}$ at the end of the result. That's the block's **resu
 
 ![The same block with the result converted to 16.4042 ft](../../../assets/first-calcsheet/unit-ft.png)
 
-Only the display converts; the maths underneath still works in exact quantities. Clear the box to go back to the natural unit.
+Only the display converts – the maths underneath stays exact. Clear the box to go back to the natural unit.
 
 ## 9. Change an input
 
@@ -79,7 +79,7 @@ This is the point of a calcsheet. Click into the first line, change the $3$ to a
 
 ![The whole column with a := 6.m and the result now 23.6585 ft](../../../assets/first-calcsheet/live-update.png)
 
-The result follows immediately, still in feet. Every block on a sheet works this way. Change any input and everything that depends on it recalculates, in reading order down the page.
+The result follows immediately – still in feet. Every block on a sheet works this way. Change any input and everything that depends on it recalculates, in reading order down the page.
 
 ## 10. Name it
 

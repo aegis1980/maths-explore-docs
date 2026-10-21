@@ -99,7 +99,7 @@ $$
 \end{aligned}
 $$
 
-One thing to know: a row or column pulled out with `row` or `column` is still two-dimensional, a $1 \times n$ or $n \times 1$ matrix rather than a vector, so index it with two numbers, `r[1, 2]`.
+One gotcha: a row or column pulled out with `row` or `column` is still two-dimensional (a $1 \times n$ or $n \times 1$ matrix, not a vector) – index it with two numbers, `r[1, 2]`.
 
 ## Units
 

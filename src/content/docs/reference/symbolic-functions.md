@@ -1,6 +1,6 @@
 ---
 title: Symbolic functions
-description: The four symbolic operations, namely simplify, expand, derivative and solve, one entry each with signature, parameters, returns, errors and an example.
+description: The four symbolic operations (simplify, expand, derivative and solve), one entry each with signature, parameters, returns, errors and an example.
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 2

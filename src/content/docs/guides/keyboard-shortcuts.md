@@ -3,9 +3,9 @@ title: Keyboard shortcuts
 description: Every keyboard shortcut in Maths Explore, covering files, undo and selection, zoom, adding blocks at the beacon, and the keys inside maths, text, table and diagram blocks.
 ---
 
-Maths Explore is built to be driven from the keyboard: you can add a maths block, write it and move on to the next without reaching for the mouse. This page lists every shortcut.
+Maths Explore is built to be driven from the keyboard: add a maths block, write it, move on to the next, and never reach for the mouse. This page is the lot.
 
-On a Mac, press <kbd>⌘</kbd> where <kbd>Ctrl</kbd> is shown and <kbd>⌥</kbd> where <kbd>Alt</kbd> is. The app's own menus show the Mac keys. Shortcuts are paused while a dialog is open, and the sheet-wide ones (undo, select all, copy, delete) stand aside while you are typing inside a block, so those keys keep their ordinary meaning in text.
+On a Mac, press <kbd>⌘</kbd> where <kbd>Ctrl</kbd> is shown and <kbd>⌥</kbd> where <kbd>Alt</kbd> is. The app's own menus show the Mac keys. Shortcuts pause while a dialog is open. The sheet-wide ones (undo, select all, copy, delete) stand aside while you're typing inside a block – those keys keep their ordinary meaning in text.
 
 ## Files
 

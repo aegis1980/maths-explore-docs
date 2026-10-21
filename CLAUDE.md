@@ -30,11 +30,25 @@ The Math Explore app source at `D:\math-explore` is the **source of truth** for 
 
 ### Prose style
 
-Published pages are the product talking to its users, so the writing stays plain.
+Published pages are the product talking to its users, in the author's own voice: a pragmatic engineer writing for engineers. The full persona lives in the local `style.md` (gitignored, so the rules that matter for docs are distilled here).
 
-- **No em dashes (`—`) in page text.** This covers body prose, headings, list items, table cells and frontmatter `description`. Recast instead: a colon introduces what follows, a full stop splits two statements, commas or brackets enclose an aside. The same goes for any site string outside the content collection, such as the footer and the site description in `src/seo.mjs`.
-- **The one exception is verbatim product text.** Error messages, menu labels and other strings quoted from the app are reproduced exactly, em dash and all, because the reader is matching them against what the screen shows. Several of the app's own messages contain one (for example `matrixIndexing.js`, `tableLookup.js`). Quote, do not tidy.
-- Source comments in `.astro`, `.mjs` and `.css` files are not page text and are not bound by this.
+**Voice**
+
+- **Direct and punchy.** Short, impact-driven sentences, mixed with the occasional longer analytical one. No corporate filler, no meta-commentary ("in this section we will..."), no floral adjectives. Get to the point; stop when the point is made.
+- **Plain, precise English.** The exact technical term where one exists; no loanwords or obscure vocabulary for their own sake.
+- **Understated expertise.** State facts plainly and let the precise detail carry the authority. Never boast, never over-explain the obvious.
+- **Dry, self-aware asides, used sparingly.** A parenthetical reality check is welcome where it earns its place; one or two per page, not per paragraph. The wit is deadpan and practical, never whimsical, and never at the reader's expense.
+- **Definition plus commentary.** When a term of art first appears, define it in a line, then add the practical observation that makes it stick.
+- **Blunt verdicts over hedging.** "This fails when..." beats "it should be noted that under certain circumstances...".
+- **Honest about limits.** Say plainly what a thing can't do and when not to trust a number; the tables guide's "never extrapolates" note is the register.
+
+**Mechanics**
+
+- **Punctuation for asides is the spaced en dash ( – ), semicolons and brackets**, the blog's own habit. The en dash hangs an afterthought or a blunt payoff off a sentence; use it in moderation (an aside or two per page, not a tic). **Em dashes (`—`) stay banned in page text**, covering body prose, headings, list items, table cells and frontmatter `description`, plus site strings outside the content collection (footer, `src/seo.mjs`). Where a dash isn't earned: a colon introduces, a full stop splits, a semicolon joins, brackets enclose.
+- **Frontmatter `description` is unquoted YAML**, so it can hold neither a colon-space nor an em dash. Recast rather than quote.
+- **The one em-dash exception is verbatim product text.** Error messages, menu labels and other strings quoted from the app are reproduced exactly, em dash and all, because the reader matches them against the screen (several app messages contain one; see `matrixIndexing.js`, `tableLookup.js`). Quote, do not tidy.
+- **Function reference entries stay neutral.** They are lifted into the app as per-function help, so no asides or persona there; the voice lives in the guides, the splash and page intros.
+- Source comments in `.astro`, `.mjs` and `.css` files are not page text and are not bound by any of this.
 
 ### Function reference pages
 

@@ -110,7 +110,7 @@ interp(T, 5, "b")
 The keys must be numbers or quantities, and must run in order. Increasing or decreasing is fine, but not jumbled. An exact key returns that cell as it stands.
 
 :::note
-`interp` **never extrapolates.** Ask for a value outside the key range and it refuses, telling you the range it covers, rather than quietly returning a number you'd have to distrust.
+`interp` **never extrapolates.** Ask for a value outside the key range and it refuses, and tells you the range it covers – better a blunt no than a number you'd have to distrust.
 :::
 
 ### interp2: bilinear interpolation

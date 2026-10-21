@@ -3,7 +3,7 @@ title: Getting started
 description: Create your Maths Explore account, start your free trial, and build your first calcsheet.
 ---
 
-Maths Explore is a calculation pad for engineers: you write maths on paginated sheets, every expression is evaluated live in reading order, and units are checked as you type. This guide takes you from creating an account to your first calcsheet.
+Maths Explore is a calculation pad for engineers: you write maths on paginated sheets, every expression is evaluated live in reading order, and units are checked as you type. This guide gets you from no account to a working calcsheet.
 
 ## Create an account
 
@@ -13,7 +13,7 @@ Once you're signed in you land on your home page, and the header swaps the sign-
 
 ## Try it without an account
 
-You don't have to sign up to have a look round. The **Try Maths Explore** button on the front page opens a worked sample straight in the workspace, with no account needed. You can edit it, change the inputs, and watch the results update.
+You don't have to sign up to have a look round. The **Try Maths Explore** button on the front page opens a worked sample straight in the workspace, with no account needed; edit it, change the inputs, watch the results move.
 
 Your changes are kept in this browser from your first edit onwards, so a reload won't lose them. When you do sign up, the sheet you were working on comes with you into your account, so nothing you tried is thrown away.
 
@@ -23,16 +23,16 @@ The front page's **See plans** button goes to the plans and pricing page, and yo
 
 The first time you sign in, Maths Explore asks **Where are you based?** Pick your country and press **Continue**.
 
-Your country sets the local currency used for every price you'll see in the app, plans and AI credits alike. It doesn't limit how you pay: you can change how you pay at checkout. This is a one-time step; you won't be asked again.
+Your country sets the local currency used for every price you'll see in the app, plans and AI credits alike. It doesn't limit how you pay; checkout handles that. One-time step, never asked again.
 
 ## Your free trial
 
-Every new account automatically starts a **14-day free trial of the Professional plan** on first sign-in, with no card details and nothing to activate. While the trial runs, the app header shows how many days you have left; click that notice any time to see the plans.
+Every new account automatically starts a **14-day free trial of the Professional plan** on first sign-in – no card details, nothing to activate. While the trial runs, the app header shows how many days you have left; click that notice any time to see the plans.
 
 When the trial ends, your account simply moves to the Free plan. Your calcsheets are untouched. Only the paid features switch off until you subscribe.
 
 :::note
-The trial is tied to your email address and runs once. Deleting your account and re-registering with the same email won't restart it.
+The trial is tied to your email address and runs once; deleting the account and re-registering with the same email resumes the original clock rather than winding it back.
 :::
 
 ## Create your first calcsheet
@@ -55,4 +55,4 @@ A few things worth knowing on day one:
 
 ## What's next
 
-From here, the natural path is: add your first blocks to the canvas, write some maths with variables and units, and watch results update as you change inputs. The guides in the sidebar cover each of these in depth.
+From here, build one: [Your first calcsheet](/guides/your-first-calcsheet/) goes from blank page to a live result in ten small steps. The guides in the sidebar then take each topic in depth.

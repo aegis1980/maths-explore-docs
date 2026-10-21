@@ -1,6 +1,6 @@
 ---
 title: Matrix functions
-description: The functions that work on vectors and matrices, namely column, cross, det, dot, inv, norm, row and transpose, one entry each with signature, parameters, returns, errors and an example.
+description: The functions that work on vectors and matrices (column, cross, det, dot, inv, norm, row and transpose), one entry each with signature, parameters, returns, errors and an example.
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 2

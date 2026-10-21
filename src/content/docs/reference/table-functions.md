@@ -1,6 +1,6 @@
 ---
 title: Table functions
-description: The three functions that read a table, namely lookup, interp and interp2, one entry each with signature, parameters, returns, errors and an example.
+description: The three functions that read a table (lookup, interp and interp2), one entry each with signature, parameters, returns, errors and an example.
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 2
