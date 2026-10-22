@@ -49,7 +49,7 @@ As you return to the home page over time, it also lists your **Autosaved** calcs
 
 A few things worth knowing on day one:
 
-- **Name your calcsheet** by clicking its name at the top of the workspace and typing. The cog button next to the name reopens the options dialog.
+- **Name your calcsheet** by clicking its name at the top of the workspace and typing. The cog button next to the name reopens the options dialog; [Calcsheet options](/guides/calcsheet-options/) covers every setting in it.
 - **Start another sheet without leaving** via the worksheet menu (the ☰ button beside the name) → **New**. Your current sheet is already saved in the browser, so nothing is lost.
 - **Your work autosaves.** Changes are saved to your browser moments after you stop typing. Watch the save status in the header. Use **Save** in the worksheet menu when you want a portable `.mez` file on disk.
 

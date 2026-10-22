@@ -105,6 +105,7 @@ export default defineConfig({
 						{ label: 'Symbolic maths', slug: 'guides/symbolic-maths' },
 						{ label: 'Matrices', slug: 'guides/matrices' },
 						{ label: 'Tables', slug: 'guides/tables' },
+						{ label: 'Calcsheet options', slug: 'guides/calcsheet-options' },
 						{ label: 'Keyboard shortcuts', slug: 'guides/keyboard-shortcuts' },
 					],
 				},
