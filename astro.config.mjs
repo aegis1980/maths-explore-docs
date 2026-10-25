@@ -104,6 +104,7 @@ export default defineConfig({
 						{ label: 'Your first calcsheet', slug: 'guides/your-first-calcsheet' },
 						{ label: 'Text blocks', slug: 'guides/text-blocks' },
 						{ label: 'Symbolic maths', slug: 'guides/symbolic-maths' },
+						{ label: 'Integrals', slug: 'guides/integrals' },
 						{ label: 'Matrices', slug: 'guides/matrices' },
 						{ label: 'Tables', slug: 'guides/tables' },
 						{ label: 'Assertions', slug: 'guides/assertions' },

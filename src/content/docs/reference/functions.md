@@ -1,6 +1,6 @@
 ---
 title: Built-in functions
-description: Every built-in function of a maths block, covering arithmetic, rounding, logarithms, trigonometry, statistics, if and root, one entry each with signature, parameters, returns, errors and an example.
+description: Every built-in function of a maths block, covering arithmetic, rounding, logarithms, trigonometry, statistics, if, root and integrate, one entry each with signature, parameters, returns, errors and an example.
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 2
@@ -535,6 +535,62 @@ $$
 \begin{aligned}
 \operatorname{if}(3 > 2,\, 10,\, 20) &= 10 \\
 \operatorname{if}(3 < 2,\, 10,\, 20) &= 20
+\end{aligned}
+$$
+
+## integrate
+
+```text
+integrate(expression, x, a, b)
+∫_a^b expression dx
+```
+
+The definite integral of an expression over `x` from `a` to `b`, worked out numerically by adaptive Gauss–Kronrod quadrature to a relative accuracy of about $10^{-10}$. `x` is the integral's own variable: a value of `x` defined on the sheet is ignored inside the call and left unchanged outside it. The limits are evaluated where the call is written, so a function of its upper limit, $Q(s) := \operatorname{integrate}(q(x),\, x,\, 0,\, s)$, is a running integral. The limits themselves are never sampled, so an expression that is infinite at a limit but integrable there, such as $1/\sqrt{x}$ at 0, still converges. The limits must be finite, and there are no indefinite integrals. The integral sign is the same call written as typeset maths, and nests for a double or triple integral.
+
+### Parameters
+
+| Parameter | Meaning |
+| :-- | :-- |
+| `expression` | What to integrate, written in terms of `x`. It may call functions and use values defined above. It must give a single real number at every point of the range, in the same units throughout. |
+| `x` | The variable of integration: a plain name such as `x` or `t`. |
+| `a` | The lower limit. A finite number, or a quantity. |
+| `b` | The upper limit, in the same units as `a`. Below `a`, the integral comes out negative. |
+
+### Returns
+
+The integral, as a number or as a quantity whose units are the expression's units times the limits' units: a load in kN/m integrated over metres gives kN.
+
+### Errors
+
+| Message | When |
+| :-- | :-- |
+| *integrate expects 4 arguments: integrate(expression, variable, a, b)* | Not four arguments |
+| *integrate needs the limits a and b: Maths Explore works out definite integrals, as in integrate(x^2, x, 0, 2)* | An integral sign without limits |
+| *integrate needs the variable to integrate over: write integrate(x^2, x, 0, 2), or end an integral with d and the variable, as in ∫ x² dx* | The second argument isn't a plain name, or an integral sign has no `dx` |
+| *integrate expects a and b to share the same units* | One limit has units and the other doesn't, or they differ in kind |
+| *integrate expects a to be a finite real number* / *integrate expects b to be a finite real number* | A limit isn't numeric, or is infinite |
+| *integrate expects the expression to give a real number, but at x = … it is complex* | The expression goes complex inside the range, such as $\sqrt{x}$ below zero |
+| *integrate expects the expression to give a single value, not a matrix or vector* | The expression is a matrix or vector |
+| *integrate expects the expression to give a single real number at x = …* | The expression is text, or true or false |
+| *integrate expects the expression's units to stay the same across the range; they change at x = …* | The expression changes dimension partway, such as an `if` with differently dimensioned branches |
+| *integrate: the expression is not a finite number at x = …* | The expression is infinite or undefined inside the range |
+| *integrate did not converge within 20000 evaluations: the integral may not exist over this range, or the expression changes too sharply* | The integral diverges, such as $1/x$ from 0 to 1, or can't be pinned down to the accuracy |
+| *integrate stopped: these nested integrals need too many evaluations (more than 100000 between them)* | A double or triple integral would cost too much |
+
+### Example
+
+$$
+\begin{aligned}
+\operatorname{integrate}(x^2,\, x,\, 0,\, 2) &= 2.6667 \\
+\int_0^{\pi} \sin(t)\, dt &= 2 \\
+\int_0^2 \int_0^1 x \cdot y \, dy\, dx &= 1
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+w &:= 3\ \mathrm{kN/m} \\
+\int_{0\ \mathrm{m}}^{2\ \mathrm{m}} w\, dx &= 6\ \mathrm{kN}
 \end{aligned}
 $$
 

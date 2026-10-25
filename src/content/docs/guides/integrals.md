@@ -1,0 +1,121 @@
+---
+title: Integrals
+description: Work out definite integrals numerically, written as integrate(expression, x, a, b) or as the integral sign, with units carried through, running integrals, double integrals and the method's limits.
+---
+
+A load that varies along a beam. The first moment of an odd-shaped area. The work done by a force that changes with distance. Engineering is full of definite integrals, and the honest ones rarely have a tidy closed form. Maths Explore works them out numerically:
+
+$$
+\int_0^2 x^2\, dx = 2.6667
+$$
+
+A **definite integral** is the area under a curve between two limits. **Numerically** means by sampling the curve, so the answer is always a number, never a formula. [Symbolic maths](/guides/symbolic-maths/) differentiates expressions, but it doesn't integrate them.
+
+## Two ways to write it
+
+The integral sign and the function are the same calculation:
+
+$$
+\int_0^2 x^2\, dx = \operatorname{integrate}(x^2,\, x,\, 0,\, 2) = 2.6667
+$$
+
+- **The integral sign.** In the maths toolbar's **Symbols** group, **∫** inserts an integral with four empty boxes. The caret starts in the upper limit, and **Tab** moves on to the lower limit, then the expression, then the variable after the *d*. (Top box first is the editor's order, not a typo.)
+- **The function.** Type `integrate(` and the hint above the field reads `integrate(expression, variable, a, b)`. The **Built-in functions** group has an **integrate** button too, next to **root**, the other numerical method.
+
+In LaTeX the integral is `\int_{0}^{2} x^2 \, dx`; `\mathrm{d}x` reads the same as `dx`. The *d* and its variable are required. Leave them off and the block asks for them.
+
+## The variable belongs to the integral
+
+The variable after the *d* is a **dummy variable**: it exists only inside the integral. Define $x$ above the block and the integral doesn't notice; read $x$ further down and it still holds its own value.
+
+$$
+\begin{aligned}
+x &:= 5 \\
+\int_0^2 x^2\, dx &= 2.6667
+\end{aligned}
+$$
+
+Any plain name works as the variable: $x$, $t$, $s$. That includes $t$, which elsewhere on a calcsheet is the tonne. Everything else in the expression comes from the sheet in the usual way, so values and functions defined above the block can be used inside it.
+
+## Units
+
+The limits can carry units, as long as both are the same kind. The result's unit is the expression's unit times the limits' unit:
+
+$$
+\begin{aligned}
+w &:= 3\ \mathrm{kN/m} \\
+\int_{0\ \mathrm{m}}^{2\ \mathrm{m}} w\, dx &= 6\ \mathrm{kN} \\
+\int_{0\ \mathrm{m}}^{2\ \mathrm{m}} w \cdot x\, dx &= 6\ \mathrm{kN\,m}
+\end{aligned}
+$$
+
+A load per metre integrated over metres is a force; the same load times its lever arm is a moment. The units do the bookkeeping.
+
+Two things are refused rather than guessed:
+
+- **Limits of different kinds.** `0` to `2 m` won't run, and nor will metres to seconds.
+- **An expression whose units change partway**, such as an `if` with a force in one branch and a pressure in the other.
+
+## Running integrals
+
+Make the upper limit a function's parameter and the integral becomes a **running integral**: the total accumulated up to any point. The limits are worked out where the integral is written, so the upper limit takes whatever value the call passes in.
+
+The shear in a beam under a triangular load, rising from zero to $w_{max}$ over the span:
+
+$$
+\begin{aligned}
+L_b &:= 6\ \mathrm{m} \\
+w_{max} &:= 4\ \mathrm{kN/m} \\
+w(x) &:= w_{max} \cdot \frac{x}{L_b} \\
+V(s) &:= \int_{0\ \mathrm{m}}^{s} w(x)\, dx \\
+V(3\ \mathrm{m}) &= 3\ \mathrm{kN} \\
+V(L_b) &= 12\ \mathrm{kN}
+\end{aligned}
+$$
+
+## Double and triple integrals
+
+Nest the integral signs. Each *d* pairs with an integral sign from the inside out: in $\int_0^2 \int_0^1 x^2\, dy\, dx$, the $dy$ goes with the inner $0$ to $1$ and the $dx$ with the outer $0$ to $2$.
+
+An inner limit can depend on the outer variable, which is what makes odd shapes possible. A triangle of base $b$ and height $h$ is $b(1 - y/h)$ wide at height $y$, so its second moment of area about its base is:
+
+$$
+\begin{aligned}
+b &:= 0.3\ \mathrm{m} \\
+h &:= 0.6\ \mathrm{m} \\
+I_{base} &:= \int_{0\ \mathrm{m}}^{h} \int_{0\ \mathrm{m}}^{b(1 - y/h)} y^2\, dx\, dy = 0.0054\ \mathrm{m^4}
+\end{aligned}
+$$
+
+That is $bh^3/12$, as the tables say. (Nobody needs an integral for a triangle. The same block works for the shape the tables don't have.)
+
+The inner integral is worked out afresh at every sample of the outer one, so a double integral costs many times what a single one does, and a triple many times more. One that gets out of hand stops with *integrate stopped: these nested integrals need too many evaluations* rather than freezing the sheet.
+
+## How it works, and when not to trust it
+
+The method is **adaptive Gauss–Kronrod quadrature**. It samples the expression at 15 points across each panel of the range, works the panel out two ways, and keeps halving the panels where the two answers disagree, until the whole integral agrees to about one part in $10^{10}$. A smooth expression is done in a little over a hundred samples; a difficult one gets as many as it needs at the trouble spot.
+
+- **It never samples the limits themselves**, so an expression that is infinite at a limit but still integrable there works:
+
+  $$
+  \int_0^1 \frac{1}{\sqrt{x}}\, dx = 2
+  $$
+
+- **No answer beats a wrong one.** An integral that won't settle, such as $\int_0^1 \frac{1}{x}\, dx$ (which is infinite), shows *integrate did not converge* instead of a number.
+- **Jumps cost samples.** An `if` that steps partway along is handled, but the method spends several hundred samples closing in on the step. Splitting the integral at the step is quicker and exact:
+
+  $$
+  \int_0^3 \operatorname{if}(x < 1.3,\, 1,\, 4)\, dx = \int_0^{1.3} 1\, dx + \int_{1.3}^{3} 4\, dx = 8.1
+  $$
+
+- **It can't see what it never samples.** A spike narrower than the gaps between samples can be missed entirely, and then the result is simply wrong, with no error. A spike a millionth wide at $x = 0.3337$ integrates to $0$. If you know where a sharp feature is, split the range there.
+- **Finite limits only, and no indefinite integrals.** An $\infty$ limit is refused with *integrate expects b to be a finite real number*, and an integral sign without limits asks for them.
+- **Limits the wrong way round give a negative result**, as they should: $\int_2^0 x^2\, dx = -2.6667$.
+
+The integral shows to the sheet's decimal places like any other result; the figure behind it is good to about ten significant figures.
+
+## See also
+
+- [integrate](/reference/functions/#integrate): parameters, messages and examples at a glance
+- [Symbolic maths](/guides/symbolic-maths/): derivatives and the other symbolic operations
+- [Using LaTeX](/advanced/using-latex/): the integral sign as LaTeX

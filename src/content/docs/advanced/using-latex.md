@@ -34,7 +34,7 @@ For everyday symbols you rarely need the backslash, because the editor converts 
 | `<=`, `>=`, `!=` | $\le$, $\ge$, $\ne$ |
 | `->` | $\to$ |
 
-Function names stay as typed: `sqrt` is the function `sqrt`, not a root sign. A few of the editor's own shortcuts are switched off, such as `th` and `lim`, which would otherwise turn the middle of `pythagoras` or `limit` into an operator. MathLive's [keyboard shortcuts](https://mathlive.io/mathfield/reference/keybindings/) page lists the rest.
+Function names stay as typed: `sqrt` is the function `sqrt`, not a root sign. A few of the editor's own shortcuts are switched off, such as `th`, `lim` and `int`, which would otherwise turn the middle of `pythagoras`, `limit` or `interp` into an operator. MathLive's [keyboard shortcuts](https://mathlive.io/mathfield/reference/keybindings/) page lists the rest.
 
 ## Edit a block's source
 
@@ -111,6 +111,7 @@ The editor can display over 800 LaTeX commands. The engine computes a subset, an
 | `\max`, `\min`, `\det` | The functions of those names. |
 | `\operatorname{mod}\left(7, 3\right)` | Any built-in or user function, by name. |
 | `\pi`, `e` | The constants. |
+| `\infty` | Infinity, shown as ∞: $1/\infty$ is $0$. An integral's limits must still be finite. |
 | `\text{M12}` | Text, for labels and table keys. |
 | `\begin{pmatrix} … \end{pmatrix}`, also `bmatrix`, `Bmatrix`, `matrix` | A matrix. A single column is a vector. |
 | `\begin{vmatrix} … \end{vmatrix}` | The determinant of that matrix. |
@@ -118,6 +119,7 @@ The editor can display over 800 LaTeX commands. The engine computes a subset, an
 | `v\left[2\right]`, `M\left[1,2\right]` | An element, counting from 1. |
 | `\land` or `\wedge`, `\lor` or `\vee`, `\lnot` or `\neg` | And, or, not, in conditions. |
 | `\to` or `\rightarrow` | The symbolic arrow. See [Symbolic maths](/guides/symbolic-maths/). |
+| `\int_{a}^{b} f\,dx` | A definite integral, worked out numerically; nested for a double or triple integral. See [Integrals](/guides/integrals/). |
 | `1.5\cdot10^{-3}`, `1.5e-3` | Scientific notation. |
 
 Spacing commands (`\,`, `\;`, `\quad`) are for looks. Between digits they vanish, so `1\,000` is a thousand.
@@ -159,7 +161,8 @@ The inline form is `\operatorname{if}\left(c, a, b\right)`. The multi-line form 
 | `a \bmod b` | `\operatorname{mod}\left(a, b\right)` |
 | `\sum`, `\prod` | `\operatorname{sum}` or `\operatorname{prod}` of a vector |
 | `\frac{d}{dx}` | The `derivative` function |
-| `\int`, `\lim`, `\infty` | Nothing: no integrals, limits or infinity |
+| `\int f\,dx` without limits | Add the limits: only definite integrals compute |
+| `\lim` | Nothing: there are no limits |
 | `\begin{cases}` | The multi-line `if` above |
 | `aligned`, `align`, `gather` | One equation per block |
 | `\color`, `\textcolor`, `\boxed` | Nothing: styling doesn't compute |
@@ -170,7 +173,7 @@ The inline form is `\operatorname{if}\left(c, a, b\right)`. The multi-line form 
 | `\dot{x}`, `\ddot{x}`, `x'` | Another name, such as `v_{x}` |
 | `v[2]`, `v\lbrack 2\rbrack` | `v\left[2\right]` |
 
-The messages these produce describe the engine's reading, not your LaTeX: *Bad escape character \d* for a `\dfrac`, *Undefined function Error*, or *Undefined function* followed by an internal name such as *Sum*, *Integrate* or *At*. When a pasted block shows one of those, look for a command from this table.
+The messages these produce describe the engine's reading, not your LaTeX: *Bad escape character \d* for a `\dfrac`, *Undefined function Error*, or *Undefined function* followed by an internal name such as *Sum* or *At*. When a pasted block shows one of those, look for a command from this table.
 
 ## Edit the file
 
