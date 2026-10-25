@@ -1,11 +1,28 @@
 ---
 title: Keyboard shortcuts
-description: Every keyboard shortcut in Maths Explore, covering files, undo and selection, zoom, adding blocks at the beacon, and the keys inside maths, text, table and diagram blocks.
+description: Every keyboard shortcut in Maths Explore, covering help, files, undo and selection, zoom, adding blocks at the beacon, and the keys inside maths, text, table and diagram blocks.
 ---
 
 Maths Explore is built to be driven from the keyboard: add a maths block, write it, move on to the next, and never reach for the mouse. This page is the lot.
 
-On a Mac, press <kbd>⌘</kbd> where <kbd>Ctrl</kbd> is shown and <kbd>⌥</kbd> where <kbd>Alt</kbd> is. The app's own menus show the Mac keys. Shortcuts pause while a dialog is open. The sheet-wide ones (undo, select all, copy, delete) stand aside while you're typing inside a block – those keys keep their ordinary meaning in text.
+On a Mac, press <kbd>⌘</kbd> where <kbd>Ctrl</kbd> is shown and <kbd>⌥</kbd> where <kbd>Alt</kbd> is. The app's own menus show the Mac keys. Shortcuts pause while a dialog is open, except <kbd>F1</kbd>. The sheet-wide ones (undo, copy, delete) stand aside while you're typing inside a block – those keys keep their ordinary meaning in text. <kbd>Ctrl</kbd> + <kbd>A</kbd> is the exception: it selects every block, even from inside one.
+
+## Help
+
+| Keys | Does |
+| :-- | :-- |
+| <kbd>F1</kbd> | Opens these docs in a help window beside the sheet, at the page for what you're working on. Later presses reuse the same window. |
+
+Where it lands depends on where you are:
+
+- **Inside a built-in function's brackets**, such as `round(…)`: that function's entry in the reference. In nested calls the innermost one wins.
+- **On a function highlighted in the suggestion menu**: its entry, before you've accepted it.
+- **Anywhere else in a maths block**: [Built-in functions](/reference/functions/).
+- **In a table**: [Tables](/guides/tables/). **In a text block**: [Text blocks](/guides/text-blocks/).
+- **With calcsheet options open**: [Calcsheet options](/guides/calcsheet-options/).
+- **Nothing in particular**: the docs home, which is also where the header's **Help** button goes.
+
+Your own functions have no entry here, so a call to one opens the built-in functions reference. That holds even for one you've named `round`, which shadows the built-in on that sheet. On a Mac keyboard <kbd>F1</kbd> usually needs <kbd>fn</kbd> held down.
 
 ## Files
 
@@ -51,7 +68,7 @@ Click an empty spot on a page and the insertion beacon appears there with its to
 | <kbd>'</kbd> | A text block. |
 | <kbd>#</kbd> | A user-function block. |
 | <kbd>Delete</kbd> | Closes up one row of empty space below the beacon, pulling the blocks beneath it up. Press again to keep closing. |
-| <kbd>Ctrl</kbd> + <kbd>V</kbd> | Paste at the beacon: copied blocks, an image (as a new diagram block) or plain text (as a new text block). |
+| <kbd>Ctrl</kbd> + <kbd>V</kbd> | Paste at the beacon: copied blocks, an image (as a new diagram block) or plain text (prose as text blocks, LaTeX as maths blocks; see [Using LaTeX](/advanced/using-latex/#paste-a-document-onto-the-page)). |
 | <kbd>Escape</kbd> | Dismiss the beacon. |
 
 ## In a maths block

@@ -102,9 +102,11 @@ export default defineConfig({
 						// Each item here is one entry in the navigation menu.
 						{ label: 'Getting started', slug: 'guides/getting-started' },
 						{ label: 'Your first calcsheet', slug: 'guides/your-first-calcsheet' },
+						{ label: 'Text blocks', slug: 'guides/text-blocks' },
 						{ label: 'Symbolic maths', slug: 'guides/symbolic-maths' },
 						{ label: 'Matrices', slug: 'guides/matrices' },
 						{ label: 'Tables', slug: 'guides/tables' },
+						{ label: 'Assertions', slug: 'guides/assertions' },
 						{ label: 'Calcsheet options', slug: 'guides/calcsheet-options' },
 						{ label: 'Keyboard shortcuts', slug: 'guides/keyboard-shortcuts' },
 					],
@@ -112,6 +114,10 @@ export default defineConfig({
 				{
 					label: 'Reference',
 					items: [{ autogenerate: { directory: 'reference' } }],
+				},
+				{
+					label: 'Advanced',
+					items: [{ autogenerate: { directory: 'advanced' } }],
 				},
 			],
 		}),
