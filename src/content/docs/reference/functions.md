@@ -541,32 +541,46 @@ $$
 ## integrate
 
 ```text
+integrate(expression, x)
 integrate(expression, x, a, b)
+∫ expression dx
 ∫_a^b expression dx
+expression → integrate, x
 ```
 
-The definite integral of an expression over `x` from `a` to `b`, worked out numerically by adaptive Gauss–Kronrod quadrature to a relative accuracy of about $10^{-10}$. `x` is the integral's own variable: a value of `x` defined on the sheet is ignored inside the call and left unchanged outside it. The limits are evaluated where the call is written, so a function of its upper limit, $Q(s) := \operatorname{integrate}(q(x),\, x,\, 0,\, s)$, is a running integral. The limits themselves are never sampled, so an expression that is infinite at a limit but integrable there, such as $1/\sqrt{x}$ at 0, still converges. The limits must be finite, and there are no indefinite integrals. The integral sign is the same call written as typeset maths, and nests for a double or triple integral.
+With limits, the definite integral of an expression over `x` from `a` to `b`, worked out numerically by adaptive Gauss–Kronrod quadrature to a relative accuracy of about $10^{-10}$. `x` is the integral's own variable: a value of `x` defined on the sheet is ignored inside the call and left unchanged outside it. The limits are evaluated where the call is written, so a function of its upper limit, $Q(s) := \operatorname{integrate}(q(x),\, x,\, 0,\, s)$, is a running integral. The limits themselves are never sampled, so an expression that is infinite at a limit but integrable there, such as $1/\sqrt{x}$ at 0, still converges. The limits must be finite.
+
+Without limits, the antiderivative as a formula, with no constant of integration. It is a symbolic operation: names defined above are substituted except `x`, and the formula evaluates to a number once every name in it is defined, so $F(x) := \operatorname{integrate}(f(x),\, x)$ is a callable function and $F(b) - F(a)$ an exact definite integral. Every formula is checked by differentiating it numerically against the expression before it is shown.
+
+The integral sign is the same call written as typeset maths, and nests for a double or triple integral; the arrow is the formula's Mathcad spelling.
 
 ### Parameters
 
 | Parameter | Meaning |
 | :-- | :-- |
-| `expression` | What to integrate, written in terms of `x`. It may call functions and use values defined above. It must give a single real number at every point of the range, in the same units throughout. |
+| `expression` | What to integrate, written in terms of `x`. It may call functions and use values defined above. With limits, it must give a single real number at every point of the range, in the same units throughout. |
 | `x` | The variable of integration: a plain name such as `x` or `t`. |
-| `a` | The lower limit. A finite number, or a quantity. |
+| `a` | The lower limit. A finite number, or a quantity. Leave out `a` and `b` for the formula. |
 | `b` | The upper limit, in the same units as `a`. Below `a`, the integral comes out negative. |
 
 ### Returns
 
-The integral, as a number or as a quantity whose units are the expression's units times the limits' units: a load in kN/m integrated over metres gives kN.
+With limits, the integral, as a number or as a quantity whose units are the expression's units times the limits' units: a load in kN/m integrated over metres gives kN.
+
+Without limits, the antiderivative as an expression, or its value once every name in it is defined. Coefficients that come back as decimals are shown to six significant figures.
 
 ### Errors
 
 | Message | When |
 | :-- | :-- |
-| *integrate expects 4 arguments: integrate(expression, variable, a, b)* | Not four arguments |
-| *integrate needs the limits a and b: Maths Explore works out definite integrals, as in integrate(x^2, x, 0, 2)* | An integral sign without limits |
-| *integrate needs the variable to integrate over: write integrate(x^2, x, 0, 2), or end an integral with d and the variable, as in ∫ x² dx* | The second argument isn't a plain name, or an integral sign has no `dx` |
+| *integrate expects 2 arguments for a formula, integrate(expression, variable), or 4 for a number, integrate(expression, variable, a, b)* | Neither two nor four arguments |
+| *integrate needs the variable to integrate over: write integrate(x^2, x), or end an integral with d and the variable, as in ∫ x² dx* | Without limits: the second argument isn't a plain name, or an integral sign has no `dx` |
+| *integrate needs the variable to integrate over: write integrate(x^2, x, 0, 2), or end an integral with d and the variable, as in ∫ x² dx* | With limits: the same |
+| *integrate found no formula for this integral in x — for its value over a range, give the limits: integrate(f, x, a, b)* | Without limits, when no formula exists in ordinary functions, such as for $x^x$ |
+| *integrate's formula for this needs the sine integral Si, which Maths Explore can't evaluate — for its value over a range, give the limits: integrate(f, x, a, b)* | Without limits, when the formula needs a special function; the message names it (the sine or cosine integral, erfi, a Fresnel integral, li, Ei and others) |
+| *integrate gave up looking for a formula for this integral in x after 1 s — for its value over a range, give the limits: integrate(f, x, a, b)* | Without limits, when the search takes more than a second |
+| *integrate couldn't find a formula for this integral in x that checks out — for its value over a range, give the limits: integrate(f, x, a, b)* | Without limits, when the formula found fails the numerical check |
+| *integrate can't work out a formula through if(…) — for its value over a range, give the limits: integrate(f, x, a, b)* | Without limits, when the expression applies a function with no formula form, such as `if`, to `x` |
 | *integrate expects a and b to share the same units* | One limit has units and the other doesn't, or they differ in kind |
 | *integrate expects a to be a finite real number* / *integrate expects b to be a finite real number* | A limit isn't numeric, or is infinite |
 | *integrate expects the expression to give a real number, but at x = … it is complex* | The expression goes complex inside the range, such as $\sqrt{x}$ below zero |
@@ -591,6 +605,15 @@ $$
 \begin{aligned}
 w &:= 3\ \mathrm{kN/m} \\
 \int_{0\ \mathrm{m}}^{2\ \mathrm{m}} w\, dx &= 6\ \mathrm{kN}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\operatorname{integrate}(3x^2 + 2x + 1,\, x) &= x^3 + x^2 + x \\
+x \cdot e^x \to \operatorname{integrate},\, x &= x \cdot e^x - e^x \\
+F(x) &:= \int x \cdot e^x\, dx \\
+F(1) - F(0) &= 1
 \end{aligned}
 $$
 

@@ -100,9 +100,10 @@ The editor can display over 800 LaTeX commands. The engine computes a subset, an
 | LaTeX | Means |
 | :-- | :-- |
 | `:=` or `=` | A definition. A single `=` defines; it never tests. |
-| `==`, `\ne`, `<`, `>`, `\le` or `\leq`, `\ge` or `\geq` | A comparison. See [Assertions](/guides/assertions/). |
+| `==`, `\ne` or `\neq`, `<`, `>`, `\le` or `\leq`, `\ge` or `\geq` | A comparison. See [Assertions](/guides/assertions/). |
 | `+`, `-`, `\cdot`, `\times`, `\div` | Arithmetic. Between two vectors, `\times` is the dot product, the same as `\cdot`; use `cross(u, v)` for the cross product. |
-| `\frac{a}{b}`, `a^{b}`, `\sqrt{x}`, `\sqrt[n]{x}`, `n!`, `50\%` | Fraction, power, roots, factorial, percent. |
+| `\frac{a}{b}` (or `\dfrac`, `\tfrac`, `\cfrac`), `a^{b}`, `\sqrt{x}`, `\sqrt[n]{x}`, `n!`, `50\%` | Fraction, power, roots, factorial, percent. |
+| `a \bmod b` | The remainder, the same as `\operatorname{mod}\left(a, b\right)`. |
 | `\left( … \right)` or `( … )` | Grouping. |
 | `\left\| x \right\|` | Absolute value; the length of a vector, or the determinant of a square matrix. |
 | `\lfloor x \rfloor`, `\lceil x \rceil` | Floor and ceiling. |
@@ -116,10 +117,11 @@ The editor can display over 800 LaTeX commands. The engine computes a subset, an
 | `\begin{pmatrix} … \end{pmatrix}`, also `bmatrix`, `Bmatrix`, `matrix` | A matrix. A single column is a vector. |
 | `\begin{vmatrix} … \end{vmatrix}` | The determinant of that matrix. |
 | `M^{\top}`, `M^{\mathrm{T}}`, `M^{\intercal}` | Transpose. |
-| `v\left[2\right]`, `M\left[1,2\right]` | An element, counting from 1. |
+| `v\left[2\right]` or `v[2]`, `M\left[1,2\right]` | An element, counting from 1. |
 | `\land` or `\wedge`, `\lor` or `\vee`, `\lnot` or `\neg` | And, or, not, in conditions. |
 | `\to` or `\rightarrow` | The symbolic arrow. See [Symbolic maths](/guides/symbolic-maths/). |
 | `\int_{a}^{b} f\,dx` | A definite integral, worked out numerically; nested for a double or triple integral. See [Integrals](/guides/integrals/). |
+| `\int f\,dx` | Without limits, the antiderivative as a formula. See [Integrals](/guides/integrals/#without-limits-the-formula). |
 | `1.5\cdot10^{-3}`, `1.5e-3` | Scientific notation. |
 
 Spacing commands (`\,`, `\;`, `\quad`) are for looks. Between digits they vanish, so `1\,000` is a thousand.
@@ -153,15 +155,11 @@ The inline form is `\operatorname{if}\left(c, a, b\right)`. The multi-line form 
 
 | LaTeX | Write instead |
 | :-- | :-- |
-| `\dfrac`, `\tfrac`, `\cfrac` | `\frac` |
-| `\neq` | `\ne` |
 | `\approx`, `\equiv` | `==`, for a check |
 | `\pm` | Two blocks, one for each sign |
 | `\binom{n}{k}` | `\frac{n!}{k!\left(n-k\right)!}` |
-| `a \bmod b` | `\operatorname{mod}\left(a, b\right)` |
 | `\sum`, `\prod` | `\operatorname{sum}` or `\operatorname{prod}` of a vector |
 | `\frac{d}{dx}` | The `derivative` function |
-| `\int f\,dx` without limits | Add the limits: only definite integrals compute |
 | `\lim` | Nothing: there are no limits |
 | `\begin{cases}` | The multi-line `if` above |
 | `aligned`, `align`, `gather` | One equation per block |
@@ -171,9 +169,8 @@ The inline form is `\operatorname{if}\left(c, a, b\right)`. The multi-line form 
 | `\SI{…}{…}`, `\qty{…}{…}` | The number, then the unit |
 | `T_{\text{max}}` | `T_{\mathrm{max}}` |
 | `\dot{x}`, `\ddot{x}`, `x'` | Another name, such as `v_{x}` |
-| `v[2]`, `v\lbrack 2\rbrack` | `v\left[2\right]` |
 
-The messages these produce describe the engine's reading, not your LaTeX: *Bad escape character \d* for a `\dfrac`, *Undefined function Error*, or *Undefined function* followed by an internal name such as *Sum* or *At*. When a pasted block shows one of those, look for a command from this table.
+The messages these produce describe the engine's reading, not your LaTeX: *Bad escape character \e* for an `aligned` block, *Value expected* for a `\color`, or *Undefined function* followed by an internal name such as *Sum*, *Approx* or *Binomial*. When a pasted block shows one of those, look for a command from this table.
 
 ## Edit the file
 

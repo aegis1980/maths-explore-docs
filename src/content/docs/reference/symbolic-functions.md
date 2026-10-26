@@ -1,12 +1,12 @@
 ---
 title: Symbolic functions
-description: The four symbolic operations (simplify, expand, derivative and solve), one entry each with signature, parameters, returns, errors and an example.
+description: The symbolic operations simplify, expand, derivative and solve, one entry each with signature, parameters, returns, errors and an example. Integrate, symbolic and numerical, is in the functions reference.
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 2
 ---
 
-For how these behave on a calcsheet, including the substitution rules, the arrow spelling and the toolbar, see [Symbolic maths](/guides/symbolic-maths/).
+For how these behave on a calcsheet, including the substitution rules, the arrow spelling and the toolbar, see [Symbolic maths](/guides/symbolic-maths/). The fifth, `integrate`, is a formula without limits and a number with them, so its entry is with the other functions: [integrate](/reference/functions/#integrate).
 
 ## simplify
 

@@ -1,9 +1,9 @@
 ---
 title: Symbolic maths
-description: Rearrange and differentiate expressions instead of just evaluating them, with simplify, expand, derivative and solve, in both the function-call and Mathcad arrow spellings.
+description: Rearrange, differentiate and integrate expressions instead of just evaluating them, with simplify, expand, derivative, solve and integrate, in both the function-call and Mathcad arrow spellings.
 ---
 
-Most maths blocks produce a number. The four symbolic operations, `simplify`, `expand`, `derivative` and `solve`, produce **another expression** instead, so you can rearrange algebra, differentiate a formula, or find the roots of an equation without working them out by hand.
+Most maths blocks produce a number. The symbolic operations, `simplify`, `expand`, `derivative`, `solve` and `integrate`, produce **another expression** instead, so you can rearrange algebra, differentiate or integrate a formula, or find the roots of an equation without working them out by hand.
 
 A symbolic result is shown after the usual $=$, as maths rather than a figure. Type `derivative(x^3 + 2x, x)` and the block reads:
 
@@ -118,6 +118,18 @@ Both return every root, as a vector, with the real roots in ascending order, $-2
 `solve` handles **polynomials up to cubic** with a single remaining unknown. For anything else, such as a trigonometric equation, there is no closed form to give you, so `solve` says so and points you at `root(f, a, b)`, which finds a root numerically between two bounds you choose.
 :::
 
+## integrate
+
+Finds the antiderivative of an expression with respect to the variable you name last, with no constant of integration:
+
+$$
+\operatorname{integrate}\left(x \cdot \sin\left(x\right),\; x\right) = -x \cdot \cos\left(x\right) + \sin\left(x\right)
+$$
+
+Because of rule 2, $F(x) := \operatorname{integrate}(f(x),\, x)$ is a callable function, and $F(b) - F(a)$ an exact definite integral. Integration also nests with the other operations: differentiate the result and you get the expression back.
+
+With limits, `integrate(expression, x, a, b)` is a different thing: a definite integral, worked out numerically, so its answer is always a number. [Integrals](/guides/integrals/) covers both, including the integral sign as a third spelling and what the formula can't do.
+
 ## The arrow spelling
 
 Every operation has a second spelling: Mathcad's symbolic arrow, written $\text{expression} \to \text{keyword}$ (if you grew up on Mathcad, your thumbs already know it). Type `->` in a maths block, or use the toolbar, and the operation goes **after** the expression:
@@ -134,11 +146,12 @@ Where the operation needs a variable, it follows the keyword after a comma:
 $$
 \begin{aligned}
 x^3 + 2x &\to \operatorname{derivative}, x &&= 3x^2 + 2 \\
+x \cdot e^x &\to \operatorname{integrate}, x &&= x \cdot e^x - e^x \\
 x^2 - 4 &\to \operatorname{solve}, x
 \end{aligned}
 $$
 
-This is only a different way of writing the same four operations, not a different feature, and both spellings behave identically. An arrow works on the right-hand side of a definition, and makes a callable function just as the function-call form does:
+This is only a different way of writing the same operations, not a different feature, and both spellings behave identically. An arrow works on the right-hand side of a definition, and makes a callable function just as the function-call form does:
 
 $$
 \begin{aligned}
@@ -167,16 +180,17 @@ $$
 
 Only an arrow at the **top level** of the expression is the symbolic operator. An arrow inside brackets belongs to whatever you wrote it for and is left alone.
 
-If you use a keyword the arrow does not recognise, the block tells you which four it does know: `simplify`, `expand`, `derivative` and `solve`.
+If you use a keyword the arrow does not recognise, the block tells you which five it does know: `simplify`, `expand`, `derivative`, `solve` and `integrate`.
 
 ## Inserting from the toolbar
 
 The maths toolbar has a **Symbolics** group containing both spellings:
 
-- **→** on its own, then **→simplify**, **→expand**, **→solve** and **→derivative** for the arrow form. Each keyword button writes the whole $\to \text{keyword}$, which also keeps the keyword upright rather than leaving it in the italic maths face.
-- **derivative()**, **solve()**, **simplify()** and **expand()** for the function-call form: the spelling that nests inside another operation, and the one autosuggest offers as you type.
+- **→** on its own, then **→simplify**, **→expand**, **→solve**, **→derivative** and **→integrate** for the arrow form. Each keyword button writes the whole $\to \text{keyword}$, which also keeps the keyword upright rather than leaving it in the italic maths face.
+- **derivative()**, **integrate()**, **solve()**, **simplify()** and **expand()** for the function-call form: the spelling that nests inside another operation, and the one autosuggest offers as you type.
+- **∫dx**, the integral sign without limits: the antiderivative written as typeset maths.
 
-For **→solve** and **→derivative**, the variable is left as an empty placeholder for you to fill in.
+For **→solve**, **→derivative** and **→integrate**, the variable is left as an empty placeholder for you to fill in.
 
 ## Switching between the two spellings
 
@@ -197,7 +211,7 @@ Add $x := 2$ and the same block gives $= 12\ \mathrm{m}$, units and all.
 ## Things to know
 
 - **A symbolic result is not a number.** If you use a name holding an expression where a number is wanted, the block tells you so, and names what the expression is still waiting to know. Define the remaining unknowns and it resolves itself.
-- **Decimal places and result-unit overrides do not apply** while a result is still an expression: there is no figure to round and no value to convert. Both come back as soon as the result evaluates to a number.
+- **Decimal places and result-unit overrides do not apply** while a result is still an expression: there is no figure to round and no value to convert. Both come back as soon as the result evaluates to a number. A decimal coefficient inside an expression is shown to six significant figures.
 - **Subscripted and Greek names are preserved** in the result, so typing `F_cy` comes back as $F_{cy}$, exactly as you typed it.
 - **A definition that refers to itself**, or definitions nested more than eight deep, cannot be worked out symbolically – the block says so rather than hanging.
 - **A sheet variable named after an operation shadows it**, exactly as it does for any other built-in function.
@@ -205,3 +219,4 @@ Add $x := 2$ and the same block gives $= 12\ \mathrm{m}$, units and all.
 ## See also
 
 - [Symbolic functions](/reference/symbolic-functions/): signatures, limits and messages at a glance
+- [Integrals](/guides/integrals/): the antiderivative in full, and the numerical definite integral
