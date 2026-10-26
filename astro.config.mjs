@@ -113,6 +113,10 @@ export default defineConfig({
 					],
 				},
 				{
+					label: 'Extensions',
+					items: [{ autogenerate: { directory: 'extensions' } }],
+				},
+				{
 					label: 'Reference',
 					items: [{ autogenerate: { directory: 'reference' } }],
 				},
