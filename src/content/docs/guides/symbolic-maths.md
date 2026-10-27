@@ -1,9 +1,9 @@
 ---
 title: Symbolic maths
-description: Rearrange, differentiate and integrate expressions instead of just evaluating them, with simplify, expand, derivative, solve and integrate, in both the function-call and Mathcad arrow spellings.
+description: Rearrange, factorise, differentiate and integrate expressions instead of just evaluating them, with simplify, expand, factor, derivative, solve and integrate, in both the function-call and Mathcad arrow spellings.
 ---
 
-Most maths blocks produce a number. The symbolic operations, `simplify`, `expand`, `derivative`, `solve` and `integrate`, produce **another expression** instead, so you can rearrange algebra, differentiate or integrate a formula, or find the roots of an equation without working them out by hand.
+Most maths blocks produce a number. The symbolic operations, `simplify`, `expand`, `factor`, `derivative`, `solve` and `integrate`, produce **another expression** instead, so you can rearrange algebra, factorise a polynomial, differentiate or integrate a formula, or find the roots of an equation without working them out by hand.
 
 A symbolic result is shown after the usual $=$, as maths rather than a figure. Type `derivative(x^3 + 2x, x)` and the block reads:
 
@@ -49,19 +49,57 @@ Add $y := 3$ and the identical block reads $= 24$.
 
 ## simplify
 
-Collects like terms and tidies an expression.
+Collects like terms, cancels what a numerator and denominator share, and knows the standard identities:
 
 $$
-\operatorname{simplify}\left(2x + 3x\right) = 5x
+\begin{aligned}
+\operatorname{simplify}\left(2x + 3x\right) &= 5x \\
+\operatorname{simplify}\left(\frac{x^2 + 2x + 1}{x + 1}\right) &= x + 1 \\
+\operatorname{simplify}\left(\sin^2 x + \cos^2 x\right) &= 1 \\
+\operatorname{simplify}\left(2\sin x \cos x\right) &= \sin\left(2x\right) \\
+\operatorname{simplify}\left(\ln\left(e^x\right)\right) &= x
+\end{aligned}
 $$
+
+The third has nothing unknown left in it, so by rule 2 it is a plain number, as usable as any other result.
+
+Roots stay exact: $\operatorname{simplify}\left(\sqrt{8} \cdot x\right) = 2\sqrt{2}\,x$, rather than a decimal.
+
+It never assumes a sign. As far as the calcsheet knows, any name could be negative, so $\sqrt{x^2}$ simplifies to $\left|x\right|$ and $\log\left(x^2\right)$ to $2\log\left|x\right|$ (correct, if not always what you wanted for a length).
 
 ## expand
 
-Multiplies out brackets and powers of sums.
+Multiplies out brackets and powers of sums, then collects the terms that result:
 
 $$
-\operatorname{expand}\left(\left(x + 1\right)^3\right) = x^3 + 3x^2 + 3x + 1
+\begin{aligned}
+\operatorname{expand}\left(\left(x + 1\right)^3\right) &= x^3 + 3x^2 + 3x + 1 \\
+\operatorname{expand}\left(\left(x + y\right)\left(x - y\right)\right) &= x^2 - y^2
+\end{aligned}
 $$
+
+## factor
+
+The reverse of `expand`: it writes a polynomial as a product of factors.
+
+$$
+\begin{aligned}
+\operatorname{factor}\left(x^2 - 4\right) &= \left(x - 2\right)\left(x + 2\right) \\
+\operatorname{factor}\left(2x^2 + 4x\right) &= 2x\left(x + 2\right) \\
+\operatorname{factor}\left(x^3 + 3x^2 + 3x + 1\right) &= \left(x + 1\right)^3 \\
+\operatorname{factor}\left(x^4 + 4\right) &= \left(x^2 - 2x + 2\right)\left(x^2 + 2x + 2\right)
+\end{aligned}
+$$
+
+A common factor comes out front, a repeated factor becomes a power, and a factor with no real roots stays a quadratic.
+
+It factorises **over the rationals**: every coefficient in a factor is a whole number or a fraction. So $x^2 - 2$ comes back exactly as you typed it. Its factors $\left(x - \sqrt{2}\right)\left(x + \sqrt{2}\right)$ exist, just not with rational coefficients.
+
+What it won't do:
+
+- **Much with two or more variables.** It finds a difference of two squares ($x^2 - y^2$), a perfect square ($x^2 + 2xy + y^2$) and a numeric common factor, and nothing else. $x^2 y + x y^2$ comes back unfactored, not as $xy\left(x + y\right)$. One variable is where it shines.
+- **Tidy a leading coefficient.** It goes out front, so $6x^2 - x - 2$ gives $6\left(x - \tfrac{2}{3}\right)\left(x + \tfrac{1}{2}\right)$ rather than $\left(3x - 2\right)\left(2x + 1\right)$. Same polynomial.
+- **Fractions.** Those are `simplify`'s job, which factorises the top and bottom and cancels: $\operatorname{simplify}\left(\dfrac{x^2 - 1}{x^2 + 2x + 1}\right) = \dfrac{x - 1}{x + 1}$.
 
 ## derivative
 
@@ -137,7 +175,8 @@ Every operation has a second spelling: Mathcad's symbolic arrow, written $\text{
 $$
 \begin{aligned}
 \left(x + 1\right)^3 \to \operatorname{expand} &= x^3 + 3x^2 + 3x + 1 \\
-2x + 3x \to \operatorname{simplify} &= 5x
+2x + 3x \to \operatorname{simplify} &= 5x \\
+x^2 - 4 \to \operatorname{factor} &= \left(x - 2\right)\left(x + 2\right)
 \end{aligned}
 $$
 
@@ -180,14 +219,14 @@ $$
 
 Only an arrow at the **top level** of the expression is the symbolic operator. An arrow inside brackets belongs to whatever you wrote it for and is left alone.
 
-If you use a keyword the arrow does not recognise, the block tells you which five it does know: `simplify`, `expand`, `derivative`, `solve` and `integrate`.
+If you use a keyword the arrow does not recognise, the block tells you which six it does know: `simplify`, `expand`, `factor`, `derivative`, `solve` and `integrate`.
 
 ## Inserting from the toolbar
 
 The maths toolbar has a **Symbolics** group containing both spellings:
 
-- **→** on its own, then **→simplify**, **→expand**, **→solve**, **→derivative** and **→integrate** for the arrow form. Each keyword button writes the whole $\to \text{keyword}$, which also keeps the keyword upright rather than leaving it in the italic maths face.
-- **derivative()**, **integrate()**, **solve()**, **simplify()** and **expand()** for the function-call form: the spelling that nests inside another operation, and the one autosuggest offers as you type.
+- **→** on its own, then **→simplify**, **→expand**, **→factor**, **→solve**, **→derivative** and **→integrate** for the arrow form. Each keyword button writes the whole $\to \text{keyword}$, which also keeps the keyword upright rather than leaving it in the italic maths face.
+- **derivative()**, **integrate()**, **solve()**, **simplify()**, **expand()** and **factor()** for the function-call form: the spelling that nests inside another operation, and the one autosuggest offers as you type.
 - **∫dx**, the integral sign without limits: the antiderivative written as typeset maths.
 
 For **→solve**, **→derivative** and **→integrate**, the variable is left as an empty placeholder for you to fill in.
@@ -211,6 +250,7 @@ Add $x := 2$ and the same block gives $= 12\ \mathrm{m}$, units and all.
 ## Things to know
 
 - **A symbolic result is not a number.** If you use a name holding an expression where a number is wanted, the block tells you so, and names what the expression is still waiting to know. Define the remaining unknowns and it resolves itself.
+- **`simplify`, `expand` and `factor` check their answers.** Each answer is tested numerically against your expression before it is shown, and one that fails is never shown. You get a plainer answer instead, with no error: for `factor`, your expression as written.
 - **Decimal places and result-unit overrides do not apply** while a result is still an expression: there is no figure to round and no value to convert. Both come back as soon as the result evaluates to a number. A decimal coefficient inside an expression is shown to six significant figures.
 - **Subscripted and Greek names are preserved** in the result, so typing `F_cy` comes back as $F_{cy}$, exactly as you typed it.
 - **A definition that refers to itself**, or definitions nested more than eight deep, cannot be worked out symbolically – the block says so rather than hanging.

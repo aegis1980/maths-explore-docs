@@ -1,12 +1,12 @@
 ---
 title: Symbolic functions
-description: The symbolic operations simplify, expand, derivative and solve, one entry each with signature, parameters, returns, errors and an example. Integrate, symbolic and numerical, is in the functions reference.
+description: The symbolic operations simplify, expand, factor, derivative and solve, one entry each with signature, parameters, returns, errors and an example. Integrate, symbolic and numerical, is in the functions reference.
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 2
 ---
 
-For how these behave on a calcsheet, including the substitution rules, the arrow spelling and the toolbar, see [Symbolic maths](/guides/symbolic-maths/). The fifth, `integrate`, is a formula without limits and a number with them, so its entry is with the other functions: [integrate](/reference/functions/#integrate).
+For how these behave on a calcsheet, including the substitution rules, the arrow spelling and the toolbar, see [Symbolic maths](/guides/symbolic-maths/). The sixth, `integrate`, is a formula without limits and a number with them, so its entry is with the other functions: [integrate](/reference/functions/#integrate).
 
 ## simplify
 
@@ -16,7 +16,7 @@ expression → simplify
 expression →
 ```
 
-Collects like terms and tidies an expression. Names the sheet defines above the block are substituted in first; the result stays an expression while anything in it is unknown, and becomes a value once nothing is.
+Simplifies an expression: collects like terms, cancels factors common to a numerator and denominator, applies the trigonometric, exponential and logarithm identities, and keeps roots exact. Names the sheet defines above the block are substituted in first; the result stays an expression while anything in it is unknown, and becomes a value once nothing is.
 
 ### Parameters
 
@@ -26,7 +26,7 @@ Collects like terms and tidies an expression. Names the sheet defines above the 
 
 ### Returns
 
-The simplified expression, or its value once every name in it is defined.
+The simplified expression, or its value once every name in it is defined. No sign is assumed for a name, so $\sqrt{x^2}$ simplifies to $\left|x\right|$, not $x$. The answer is checked numerically against the expression before it is shown; if the check fails, a plainer simplification that mostly collects like terms is shown instead.
 
 ### Errors
 
@@ -41,6 +41,14 @@ $$
 \operatorname{simplify}\left(2x + 3x\right) = 5x
 $$
 
+$$
+\operatorname{simplify}\left(\frac{x^2 + 2x + 1}{x + 1}\right) = x + 1
+$$
+
+$$
+\operatorname{simplify}\left(\sin^2 x + \cos^2 x\right) = 1
+$$
+
 ## expand
 
 ```text
@@ -48,7 +56,7 @@ expand(expression)
 expression → expand
 ```
 
-Multiplies out brackets and powers of sums. Substitution and evaluation behave as for `simplify`.
+Multiplies out brackets and powers of sums, and collects the terms that result. Substitution and evaluation behave as for `simplify`.
 
 ### Parameters
 
@@ -58,7 +66,7 @@ Multiplies out brackets and powers of sums. Substitution and evaluation behave a
 
 ### Returns
 
-The expanded expression, or its value once every name in it is defined.
+The expanded expression, or its value once every name in it is defined. The answer is checked numerically against the expression before it is shown; if the check fails, the brackets are multiplied out without collecting terms that mix two names.
 
 ### Errors
 
@@ -71,6 +79,50 @@ The expanded expression, or its value once every name in it is defined.
 
 $$
 \operatorname{expand}\left(\left(x + 1\right)^3\right) = x^3 + 3x^2 + 3x + 1
+$$
+
+$$
+\operatorname{expand}\left(\left(x + y\right)\left(x - y\right)\right) = x^2 - y^2
+$$
+
+## factor
+
+```text
+factor(expression)
+expression → factor
+```
+
+Factorises a polynomial over the rational numbers: a common factor is taken out, a repeated factor is gathered into a power, and a factor with no real roots is kept as a quadratic. Substitution and evaluation behave as for `simplify`.
+
+### Parameters
+
+| Parameter | Meaning |
+| :-- | :-- |
+| `expression` | A polynomial. Sheet-defined names are substituted as for `simplify`. |
+
+### Returns
+
+The factorised expression, or its value once every name in it is defined. A leading coefficient is taken out in front, so $6x^2 - x - 2$ gives $6\left(x - \tfrac{2}{3}\right)\left(x + \tfrac{1}{2}\right)$. A polynomial with no factors over the rationals, such as $x^2 - 2$, is returned unfactored, as is anything that is not a polynomial. In more than one variable only a difference of two squares, a perfect square and a numeric common factor are found. A fraction is not factorised; `simplify` cancels its common factors instead. The answer is checked numerically against the expression before it is shown; if the check fails, the expression is returned as written.
+
+### Errors
+
+| Message | When |
+| :-- | :-- |
+| *factor expects 1 argument: factor(expression)* | Wrong number of arguments |
+| *A definition used here refers to itself, so it cannot be worked out symbolically* | A function in the expression refers to itself, or definitions nest more than eight deep |
+
+### Example
+
+$$
+\operatorname{factor}\left(x^2 - 4\right) = \left(x - 2\right)\left(x + 2\right)
+$$
+
+$$
+\operatorname{factor}\left(x^4 + 4\right) = \left(x^2 - 2x + 2\right)\left(x^2 + 2x + 2\right)
+$$
+
+$$
+\operatorname{factor}\left(x^3 + 3x^2 + 3x + 1\right) = \left(x + 1\right)^3
 $$
 
 ## derivative
