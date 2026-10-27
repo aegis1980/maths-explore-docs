@@ -1,58 +1,54 @@
 ---
 title: Beams
-description: Insert standard beam formulas for reactions, shear, bending moment and deflection as live functions, from 32 cases across six kinds of beam.
+description: 32 standard beam cases, inserted as live functions for reactions, shear, bending moment and deflection.
 ---
 
-The **Beams** extension is a catalogue of 32 standard beam cases: simple spans, cantilevers, propped cantilevers, overhangs, fixed ends and two-span continuous beams.
+32 standard beam cases: simple spans, cantilevers, propped cantilevers, overhangs, fixed ends and two-span continuous beams. Pick one and it lands on the calcsheet as a schematic plus live functions for its reactions, shears, moments and deflections.
 
-Pick one and it lands on the calcsheet as a schematic plus a set of live functions for its reactions, shears, moments and deflections. 
-
-Beams is free on every plan. It needs an account; in the no-account demo the tab shows a sign-up prompt instead. 
+Free on every plan; needs an account.
 
 ## Find a case
 
-Click the beam icon in the activity bar to open the **BEAMS** panel. Each case shows its schematic and its name.
+Click the beam icon in the activity bar.
 
 ![The Beams panel: a search box, the category menu reading Show all (32), and the first two cases with their schematics](../../../assets/beams/panel.png)
 
-Two filters narrow the list, and they stack:
+Two filters, stacked:
 
-- **The category menu** (**Show all (32)** to start) picks one kind of beam: Simple Beams, Cantilever Beams, Propped Cantilevers, Overhanging Beams, Fixed-End Beams or Continuous Beams.
-- **The search box** matches the letters you type, in order, against each case's name and summary, and puts the best match first. It ranks more than it filters: `udl` keeps 29 of the 32 cases but leads with the fully loaded uniform spans, and `cant point` puts **Cantilever Beam – Concentrated Load at Any Point** on top.
+- **Category** (**Show all (32)**): Simple Beams, Cantilever Beams, Propped Cantilevers, Overhanging Beams, Fixed-End Beams or Continuous Beams.
+- **Search**: the letters you type, in order, against name and summary; best match first. It ranks more than it filters – `udl` keeps 29 of the 32 but leads with the fully loaded spans, and `cant point` puts **Cantilever Beam – Concentrated Load at Any Point** on top.
 
 ## Insert a case
 
-Click the page where the case should go; the beacon marks the spot. Then press **+** beside the case. With no beacon, it goes below everything already on the sheet.
+Click the page to place the beacon, then press **+**. With no beacon it goes below everything.
 
 ![A uniformly loaded simple beam on the calcsheet: the beam schematic with its name beside it, then R, M max and Delta max as function definitions, each with a description to its right](../../../assets/beams/inserted.png)
 
-What lands:
+You get:
 
-- **The schematic**, as a diagram block, with the case name as its description.
-- **One maths block per formula**, each a function definition with a one-line description to its right saying what it gives and where.
+- **The schematic**, as a diagram block, with the case name beside it.
+- **One function definition per formula**, with a line saying what it gives and where.
 
-The case arrives selected, so you can drag it into place in one go, and a single **Undo** takes all of it off again. A function definition shows no result of its own; it waits to be called.
+It arrives selected, so it drags as one. One **Undo** removes it. The definitions show no result; they wait to be called.
 
 ## Choose what comes in
 
-The chevron under the **+** opens the case's contents, all ticked.
+The chevron under **+** opens the case's contents, all ticked.
 
 ![The expanded list for the uniformly loaded simple beam: Include beam diagram, then the typeset signatures R(w, L), M max(w, L) and Delta max(w, L, E, I), each with a ticked box](../../../assets/beams/expressions.png)
 
-- **Include beam diagram** controls the schematic. Untick it and the case name comes in as a small unnumbered heading instead.
-- **One box per formula**, typeset as it will appear on the sheet. Hover over one for its description, and untick the ones you don't need.
+- **Include beam diagram**: untick it and the name comes in as a small unnumbered heading instead.
+- **One box per formula**: hover over one for its description; untick what you don't need.
 
-Only one case's list is open at a time; opening another closes the first.
-
-Don't untick a formula the others call. Several cases build on a helper, most often $L_1$, the total length: in **Simple Beam – Concentrated Load at Any Point**, $R_1$, $R_2$, $M_{max}$ and $\Delta_{max}$ all divide by $L_1(a, b)$. Leave $L_1$ out and every call to them fails with *Undefined function L_1*. The panel won't stop you.
+Don't untick a formula the others call. $L_1$, the total length, is the usual one: in **Simple Beam – Concentrated Load at Any Point**, $R_1$, $R_2$, $M_{max}$ and $\Delta_{max}$ all divide by $L_1(a, b)$. Leave it out and they fail with *Undefined function L_1*. The panel won't stop you.
 
 ## Use the formulas
 
-Each formula is a function: give it values and it answers. Define the inputs above, then call it:
+Define the inputs, then call:
 
 ![w, L, E and I defined in a row, then R(w, L) = 30 kN, M max(w, L) = 45 kN·m and Delta max(w, L, E, I) = 10.5469 mm](../../../assets/beams/calls.png)
 
-That's **Simple Beam – Uniformly Distributed Load**, with $w = 10\ \mathrm{kN/m}$ over $L = 6\ \mathrm{m}$, $E = 200\ \mathrm{GPa}$ and $I = 8000\ \mathrm{cm^4}$:
+That's **Simple Beam – Uniformly Distributed Load** with $w = 10\ \mathrm{kN/m}$, $L = 6\ \mathrm{m}$, $E = 200\ \mathrm{GPa}$ and $I = 8000\ \mathrm{cm^4}$:
 
 $$
 R(w, L) = 30\ \mathrm{kN} \qquad M_{max}(w, L) = 45\ \mathrm{kN \cdot m} \qquad \Delta_{max}(w, L, E, I) = 10.5469\ \mathrm{mm}
@@ -60,21 +56,21 @@ $$
 
 Change $w$ and all three move.
 
-**Arguments go by position, not by name.** The first thing in the brackets is the load, whatever you called it, so `M_max(w_d, L_s)` works, and so does `M_max(10.kN/m, 6.m)`. While you type a call, a hint above the field shows the signature, highlights the argument the caret is in and says what it is, with a typical value:
+**Arguments go by position.** The first in the brackets is the load, whatever it's called: `M_max(w_d, L_s)` works, and so does `M_max(10.kN/m, 6.m)`. While you type, a hint names the argument under the caret and gives a typical value:
 
 ![The signature hint over a call to M max: M_max(w, L) with L highlighted, and the note that L is the span length, for example 6 m](../../../assets/beams/signature-hint.png)
 
-The same notes live in the formula's description. Right-click the description and choose **Detailed Description** to read them all at once.
+For all of a formula's notes at once, right-click its description and choose **Detailed Description**.
 
-**Units look after themselves.** Give the inputs in whatever units you have; the result carries its unit, converted. To see a result in another unit, change it in the result's unit box, as in [Your first calcsheet](/guides/your-first-calcsheet/#8-show-it-in-feet).
+**Units look after themselves.** The result carries its unit; change it in the unit box, as in [Your first calcsheet](/guides/your-first-calcsheet/#8-show-it-in-feet).
 
-**Assign a result to carry it forward.** $M_{Ed} := 1.5 \cdot M_{max}(w, L)$ gives $M_{Ed} = 67.5\ \mathrm{kN \cdot m}$, ready for the next check.
+**Assign a result to carry it forward.** $M_{Ed} := 1.5 \cdot M_{max}(w, L)$ gives $67.5\ \mathrm{kN \cdot m}$.
 
-(One name to watch: $L$ is also the litre. Define $L := 6\ \mathrm{m}$ and every litre below it becomes six metres, which matters only on a sheet that measures volumes too. Call the span $L_s$ there.)
+(Mind $L$: it's also the litre. Define $L := 6\ \mathrm{m}$ and every litre below becomes six metres. Only matters if the sheet measures volumes; call the span $L_s$ there.)
 
 ## The catalogue
 
-The inputs follow one convention: $w$ is a uniform load per unit length, $W$ a total load, $P$ a point load, $L$ a span, $a$, $b$ and $c$ distances along the beam (each case's schematic shows where from), $E$ the modulus of elasticity and $I$ the second moment of area. A subscript numbers the first and second of a kind. **Inputs** lists what a case needs, not the order its functions take them in; the hint gives the order.
+Inputs: $w$ a uniform load per unit length, $W$ a total load, $P$ a point load, $L$ a span, $a$, $b$ and $c$ distances along the beam (the schematic shows from where), $E$ the modulus of elasticity, $I$ the second moment of area. Subscripts number the first and second of a kind. **Inputs** says what a case needs, not the order; the hint gives the order.
 
 ### Simple Beams
 
